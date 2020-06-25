@@ -1,119 +1,1236 @@
 Firm.Name,FeeChange,count,pct
+1290 Funds,Cut,14,37.83783783783784
+1290 Funds,No Change,18,48.64864864864865
+1290 Funds,Hike,5,13.513513513513514
+13D Activist Fund,No Change,3,100
+1919 Funds,Cut,2,22.22222222222222
+1919 Funds,No Change,4,44.44444444444444
+1919 Funds,Hike,3,33.33333333333333
+360 Funds,Cut,3,100
+361 Funds,Cut,3,30
+361 Funds,Hike,7,70
+7Twelve,No Change,2,100
+AAAMCO,Cut,2,100
+AAM,Cut,7,53.84615384615385
+AAM,No Change,2,15.384615384615385
+AAM,Hike,4,30.76923076923077
+AAMA,Hike,2,100
+Aasgard,No Change,1,100
+Abbey Capital,No Change,4,100
+Aberdeen,Cut,37,39.784946236559136
+Aberdeen,No Change,34,36.55913978494624
+Aberdeen,Hike,22,23.655913978494624
 ABR,Cut,2,100
-AMIDEX,Hike,3,100
-BlackRock,Cut,10,20
-BlackRock,No Change,28,56.00000000000001
-BlackRock,Hike,12,24
-BNY Mellon,No Change,10,100
-Calvert Research and Management,Cut,10,55.55555555555556
-Calvert Research and Management,No Change,1,5.555555555555555
-Calvert Research and Management,Hike,7,38.88888888888889
-CBOE Vest,Cut,3,20
-CBOE Vest,No Change,5,33.33333333333333
-CBOE Vest,Hike,7,46.666666666666664
-Columbia,No Change,17,100
-Dimensional Fund Advisors,Hike,1,100
-Direxion Funds,No Change,3,23.076923076923077
-Direxion Funds,Hike,10,76.92307692307693
-DWS,Cut,4,57.14285714285714
-DWS,No Change,1,14.285714285714285
-DWS,Hike,2,28.57142857142857
-Federated,Cut,1,14.285714285714285
-Federated,No Change,6,85.71428571428571
-Fidelity Investments,Cut,7,18.421052631578945
-Fidelity Investments,No Change,30,78.94736842105263
-Fidelity Investments,Hike,1,2.631578947368421
-Great-West Funds,Cut,2,11.11111111111111
-Great-West Funds,No Change,10,55.55555555555556
-Great-West Funds,Hike,6,33.33333333333333
-Green Century,No Change,2,100
-Guggenheim Investments,No Change,3,15
-Guggenheim Investments,Hike,17,85
-GuideStone Funds,Cut,1,33.33333333333333
-GuideStone Funds,Hike,2,66.66666666666666
-Hennessy,Cut,1,50
-Hennessy,Hike,1,50
-Homestead,Hike,1,100
-Index Funds,No Change,1,100
-Invesco,Cut,6,66.66666666666666
-Invesco,No Change,1,11.11111111111111
-Invesco,Hike,2,22.22222222222222
-Ivy Funds,Cut,4,17.391304347826086
-Ivy Funds,No Change,17,73.91304347826086
-Ivy Funds,Hike,2,8.695652173913043
-Jackson National,Cut,19,35.84905660377358
-Jackson National,No Change,24,45.28301886792453
-Jackson National,Hike,10,18.867924528301888
-JPMorgan,No Change,4,100
-KKM,Cut,1,100
-Legg Mason,No Change,2,100
-Leland Funds,No Change,6,100
-MainStay,Cut,2,33.33333333333333
-MainStay,No Change,4,66.66666666666666
-MassMutual,Cut,7,25
-MassMutual,No Change,14,50
-MassMutual,Hike,7,25
-Mutual of America,Cut,1,20
-Mutual of America,No Change,4,80
-Nationwide,Cut,8,27.586206896551722
-Nationwide,No Change,5,17.24137931034483
-Nationwide,Hike,16,55.172413793103445
-New Covenant,Cut,1,100
-Northern Funds,No Change,8,88.88888888888889
-Northern Funds,Hike,1,11.11111111111111
-Pax World,No Change,2,100
-PGIM Funds (Prudential),No Change,3,42.857142857142854
-PGIM Funds (Prudential),Hike,4,57.14285714285714
-Power Mutual Funds,Cut,9,64.28571428571429
-Power Mutual Funds,Hike,5,35.714285714285715
-Praxis Mutual Funds,Cut,4,50
-Praxis Mutual Funds,No Change,1,12.5
-Praxis Mutual Funds,Hike,3,37.5
-Principal Funds,Cut,1,2.564102564102564
-Principal Funds,No Change,22,56.41025641025641
-Principal Funds,Hike,16,41.02564102564102
-Probabilities Fund,Hike,3,100
-ProFunds,Cut,18,14.754098360655737
-ProFunds,No Change,22,18.0327868852459
-ProFunds,Hike,82,67.21311475409836
-Redwood,Cut,1,16.666666666666664
-Redwood,No Change,5,83.33333333333334
-Rydex Funds,Cut,1,0.9523809523809524
-Rydex Funds,No Change,2,1.9047619047619049
-Rydex Funds,Hike,102,97.14285714285714
-Schwab Funds,Cut,3,17.647058823529413
-Schwab Funds,No Change,11,64.70588235294117
-Schwab Funds,Hike,3,17.647058823529413
-SEI,Cut,1,16.666666666666664
-SEI,No Change,4,66.66666666666666
-SEI,Hike,1,16.666666666666664
-Shelton Capital Management,Cut,2,25
-Shelton Capital Management,Hike,6,75
-State Street Global Advisors,Cut,3,23.076923076923077
-State Street Global Advisors,No Change,4,30.76923076923077
-State Street Global Advisors,Hike,6,46.15384615384615
-T. Rowe Price,Cut,1,20
-T. Rowe Price,No Change,4,80
-TIAA Investments,Cut,7,19.444444444444446
-TIAA Investments,No Change,25,69.44444444444444
-TIAA Investments,Hike,4,11.11111111111111
-Transamerica,No Change,1,50
-Transamerica,Hike,1,50
-VALIC,Cut,1,20
-VALIC,No Change,2,40
-VALIC,Hike,2,40
-VanEck,No Change,5,100
-Vanguard,Cut,11,7.586206896551724
-Vanguard,No Change,134,92.41379310344827
-Victory Capital,Cut,4,36.36363636363637
-Victory Capital,No Change,6,54.54545454545454
-Victory Capital,Hike,1,9.090909090909092
-Virtus,Cut,3,100
-Voya,Cut,13,31.70731707317073
-Voya,No Change,23,56.09756097560976
-Voya,Hike,5,12.195121951219512
-Wells Fargo Funds,Cut,8,57.14285714285714
-Wells Fargo Funds,No Change,5,35.714285714285715
-Wells Fargo Funds,Hike,1,7.142857142857142
-Wilshire Mutual Funds,No Change,1,50
-Wilshire Mutual Funds,Hike,1,50
+Absolute Capital,No Change,6,100
+Absolute Strategies,Cut,2,66.66666666666666
+Absolute Strategies,Hike,1,33.33333333333333
+Acadian Funds,Cut,1,33.33333333333333
+Acadian Funds,No Change,1,33.33333333333333
+Acadian Funds,Hike,1,33.33333333333333
+ACM,Cut,2,100
+ACR Alpine Capital Research,Cut,2,50
+ACR Alpine Capital Research,No Change,2,50
+Acuitas Investments,No Change,1,100
+Adam Asset Funds,Cut,1,100
+Adirondack Funds,Cut,1,100
+AdvisorOne Funds,No Change,2,40
+AdvisorOne Funds,Hike,3,60
+Advisors Preferred,No Change,5,33.33333333333333
+Advisors Preferred,Hike,10,66.66666666666666
+Aegis,No Change,1,100
+AGF Investments,No Change,2,100
+AIG,Cut,29,57.99999999999999
+AIG,No Change,14,28.000000000000004
+AIG,Hike,7,14.000000000000002
+Akre,No Change,3,100
+Al Frank,No Change,2,100
+Alger,Cut,33,42.30769230769231
+Alger,No Change,16,20.51282051282051
+Alger,Hike,29,37.17948717948718
+All Terrain Funds,Hike,1,100
+AllianceBernstein,Cut,127,33.5978835978836
+AllianceBernstein,No Change,77,20.37037037037037
+AllianceBernstein,Hike,174,46.03174603174603
+Allianz Global Investors,Cut,44,20.37037037037037
+Allianz Global Investors,No Change,57,26.38888888888889
+Allianz Global Investors,Hike,115,53.24074074074075
+Allied Asset,Hike,1,100
+AlphaCentric Funds,Cut,6,66.66666666666666
+AlphaCentric Funds,Hike,3,33.33333333333333
+AlphaCore,Cut,2,100
+AlphaMark,No Change,1,100
+ALPS,Cut,20,43.47826086956522
+ALPS,No Change,18,39.130434782608695
+ALPS,Hike,8,17.391304347826086
+Altair,Hike,2,100
+Altegris,Cut,3,42.857142857142854
+Altegris,No Change,4,57.14285714285714
+Amana,Cut,5,62.5
+Amana,No Change,1,12.5
+Amana,Hike,2,25
+AmericaFirst Funds,Cut,6,40
+AmericaFirst Funds,No Change,1,6.666666666666667
+AmericaFirst Funds,Hike,8,53.333333333333336
+American Beacon,Cut,22,18.0327868852459
+American Beacon,No Change,49,40.16393442622951
+American Beacon,Hike,51,41.80327868852459
+American Century Investments,Cut,115,25.274725274725274
+American Century Investments,No Change,233,51.208791208791204
+American Century Investments,Hike,107,23.516483516483515
+American Funds,Cut,331,39.171597633136095
+American Funds,No Change,333,39.408284023668635
+American Funds,Hike,181,21.420118343195266
+American Growth,Cut,3,60
+American Growth,Hike,2,40
+American Independence,Cut,2,100
+American Money Management,Hike,1,100
+American Trust,No Change,1,100
+AMF,Hike,2,100
+AMG Funds,Cut,36,30.76923076923077
+AMG Funds,No Change,49,41.88034188034188
+AMG Funds,Hike,32,27.350427350427353
+Anchor,Cut,1,33.33333333333333
+Anchor,No Change,1,33.33333333333333
+Anchor,Hike,1,33.33333333333333
+Ancora,Cut,1,25
+Ancora,No Change,2,50
+Ancora,Hike,1,25
+Anfield,Hike,3,100
+Angel Oak,Cut,3,37.5
+Angel Oak,No Change,5,62.5
+Appleseed Fund,Cut,2,100
+Applied Finance Advisors,Cut,6,75
+Applied Finance Advisors,Hike,2,25
+AQR Funds,Cut,13,12.380952380952381
+AQR Funds,No Change,54,51.42857142857142
+AQR Funds,Hike,38,36.19047619047619
+Aquila,Cut,4,12.903225806451612
+Aquila,Hike,27,87.09677419354838
+Arabesque Asset Management,No Change,1,100
+Arbitrage Fund,Cut,4,28.57142857142857
+Arbitrage Fund,Hike,10,71.42857142857143
+Archer,Cut,1,25
+Archer,No Change,2,50
+Archer,Hike,1,25
+Argent,No Change,1,100
+Ariel Investments,Cut,1,10
+Ariel Investments,No Change,7,70
+Ariel Investments,Hike,2,20
+Aristotle,Cut,2,33.33333333333333
+Aristotle,No Change,4,66.66666666666666
+Arrow Funds,Hike,12,100
+Artisan,Cut,11,28.205128205128204
+Artisan,No Change,14,35.8974358974359
+Artisan,Hike,14,35.8974358974359
+Ascendant,Hike,2,100
+Ashmore,No Change,24,100
+Aspiration Funds,No Change,1,100
+Aspiriant,Cut,2,66.66666666666666
+Aspiriant,Hike,1,33.33333333333333
+Astor,No Change,7,100
+ATAC Fund,Cut,1,50
+ATAC Fund,No Change,1,50
+Athena Fund,No Change,2,100
+Auer,Hike,1,100
+Auxier Funds,No Change,3,100
+Ave Maria Mutual Funds,Cut,3,60
+Ave Maria Mutual Funds,No Change,2,40
+AXS,Cut,6,46.15384615384615
+AXS,No Change,6,46.15384615384615
+AXS,Hike,1,7.6923076923076925
+Azzad Fund,No Change,2,100
+Baillie Gifford Funds,Cut,28,68.29268292682927
+Baillie Gifford Funds,No Change,12,29.268292682926827
+Baillie Gifford Funds,Hike,1,2.4390243902439024
+Baird,Cut,8,28.57142857142857
+Baird,No Change,18,64.28571428571429
+Baird,Hike,2,7.142857142857142
+Balter,Cut,2,50
+Balter,No Change,1,25
+Balter,Hike,1,25
+Barings Funds,Cut,10,41.66666666666667
+Barings Funds,No Change,10,41.66666666666667
+Barings Funds,Hike,4,16.666666666666664
+Baron Capital Group,Cut,9,18.75
+Baron Capital Group,No Change,25,52.083333333333336
+Baron Capital Group,Hike,14,29.166666666666668
+Barrett,No Change,1,50
+Barrett,Hike,1,50
+Baywood,No Change,2,100
+BBH,Cut,1,12.5
+BBH,No Change,4,50
+BBH,Hike,3,37.5
+Beacon Investment Advisory,Cut,2,100
+"Beck, Mack & Oliver",No Change,1,100
+Becker,No Change,2,100
+Beech Hill,No Change,1,100
+BeeHive,Cut,1,100
+Berkshire,Cut,1,100
+Bernzott Capital Advisors,No Change,1,100
+BFS,No Change,1,100
+Biondo Investment Advisor,Cut,1,100
+Bishop Street,No Change,3,100
+BlackRock,Cut,207,48.25174825174825
+BlackRock,No Change,84,19.58041958041958
+BlackRock,Hike,138,32.16783216783217
+Blackstone,Hike,3,100
+Blue Chip Investor Fund,Cut,1,100
+Blue Current Funds,No Change,1,100
+BMO Funds,Cut,10,14.285714285714285
+BMO Funds,No Change,58,82.85714285714286
+BMO Funds,Hike,2,2.857142857142857
+BNY Mellon,Cut,61,24.796747967479675
+BNY Mellon,No Change,110,44.71544715447154
+BNY Mellon,Hike,75,30.48780487804878
+BNY Mellon Funds,Cut,13,29.545454545454547
+BNY Mellon Funds,No Change,22,50
+BNY Mellon Funds,Hike,9,20.454545454545457
+Bogle,No Change,1,100
+Boston Common,Cut,1,50
+Boston Common,No Change,1,50
+Boston Partners,Cut,4,28.57142857142857
+Boston Partners,No Change,4,28.57142857142857
+Boston Partners,Hike,6,42.857142857142854
+Boston Trust Walden Funds,Cut,3,30
+Boston Trust Walden Funds,No Change,6,60
+Boston Trust Walden Funds,Hike,1,10
+Boyar Value Fund,No Change,1,100
+Boyd Watterson,No Change,1,50
+Boyd Watterson,Hike,1,50
+Bramshill Investments,No Change,1,100
+Brandes,Cut,2,8.333333333333332
+Brandes,No Change,17,70.83333333333334
+Brandes,Hike,5,20.833333333333336
+Bretton Fund,No Change,1,100
+Bridge Builder,Cut,6,75
+Bridge Builder,No Change,1,12.5
+Bridge Builder,Hike,1,12.5
+Bridges,Hike,1,100
+Bridgeway,Cut,1,11.11111111111111
+Bridgeway,No Change,7,77.77777777777779
+Bridgeway,Hike,1,11.11111111111111
+Bright Rock,Cut,2,100
+Brookfield Investment Funds,Cut,1,5
+Brookfield Investment Funds,No Change,19,95
+Brown Advisory Funds,Cut,11,28.947368421052634
+Brown Advisory Funds,No Change,17,44.73684210526316
+Brown Advisory Funds,Hike,10,26.31578947368421
+Brown Capital Management,Cut,2,25
+Brown Capital Management,No Change,6,75
+Bruce,No Change,1,100
+Buffalo,No Change,8,80
+Buffalo,Hike,2,20
+Bullfinch,Cut,1,100
+Calamos,Cut,16,31.372549019607842
+Calamos,No Change,22,43.13725490196079
+Calamos,Hike,13,25.49019607843137
+Caldwell & Orkin,Hike,1,100
+Calvert Research and Management,Cut,36,59.01639344262295
+Calvert Research and Management,No Change,7,11.475409836065573
+Calvert Research and Management,Hike,18,29.508196721311474
+Cambiar Funds,Cut,9,81.81818181818183
+Cambiar Funds,Hike,2,18.181818181818183
+Camelot Funds,Hike,6,100
+Campbell & Company,No Change,1,20
+Campbell & Company,Hike,4,80
+Canterbury Investment Management,No Change,1,100
+Capital Advisors,No Change,1,100
+Capital Group,Cut,5,55.55555555555556
+Capital Group,No Change,3,33.33333333333333
+Capital Group,Hike,1,11.11111111111111
+Caravan,No Change,1,100
+Cardinal Capital,No Change,1,100
+Carillon Family of Funds,Cut,22,26.190476190476193
+Carillon Family of Funds,No Change,46,54.761904761904766
+Carillon Family of Funds,Hike,16,19.047619047619047
+Castle Investment Management,No Change,2,100
+Catalyst Mutual Funds,Cut,9,15.789473684210526
+Catalyst Mutual Funds,No Change,3,5.263157894736842
+Catalyst Mutual Funds,Hike,45,78.94736842105263
+Catholic Investor,Cut,3,16.666666666666664
+Catholic Investor,No Change,12,66.66666666666666
+Catholic Investor,Hike,3,16.666666666666664
+Causeway,Cut,2,20
+Causeway,No Change,3,30
+Causeway,Hike,5,50
+Cavalier,Cut,3,20
+Cavalier,No Change,11,73.33333333333333
+Cavalier,Hike,1,6.666666666666667
+Cavanal Hill funds,Cut,18,58.06451612903226
+Cavanal Hill funds,No Change,9,29.03225806451613
+Cavanal Hill funds,Hike,4,12.903225806451612
+CCA Funds,No Change,1,100
+Centaur,Cut,1,100
+Centerstone Investors,No Change,6,100
+Centre Funds,Cut,2,33.33333333333333
+Centre Funds,No Change,1,16.666666666666664
+Centre Funds,Hike,3,50
+CGM,Cut,1,33.33333333333333
+CGM,Hike,2,66.66666666666666
+Champlain Funds,Cut,4,80
+Champlain Funds,No Change,1,20
+Changing Parameters,Hike,1,100
+Chartwell Investment Partners,Cut,1,20
+Chartwell Investment Partners,No Change,4,80
+Chase,Hike,2,100
+Chesapeake,Cut,1,100
+Chiron Investment Management,Cut,1,50
+Chiron Investment Management,No Change,1,50
+Christopher Weil,No Change,1,100
+CIBC Private Wealth Management,Cut,3,60
+CIBC Private Wealth Management,Hike,2,40
+City National Rochdale,No Change,13,86.66666666666667
+City National Rochdale,Hike,2,13.333333333333334
+Clark Fork Trust,No Change,1,100
+Clarkston Funds,Cut,1,25
+Clarkston Funds,No Change,2,50
+Clarkston Funds,Hike,1,25
+Clifford Capital,No Change,2,100
+Clipper Fund,No Change,1,100
+Clough,Cut,1,25
+Clough,Hike,3,75
+CM Advisors,No Change,1,50
+CM Advisors,Hike,1,50
+CMG,Cut,3,50
+CMG,Hike,3,50
+Cognios Capital,No Change,2,33.33333333333333
+Cognios Capital,Hike,4,66.66666666666666
+Cohen & Steers,Cut,28,57.14285714285714
+Cohen & Steers,No Change,19,38.775510204081634
+Cohen & Steers,Hike,2,4.081632653061225
+Coho,Cut,1,100
+Columbia,Cut,265,42.06349206349206
+Columbia,No Change,201,31.9047619047619
+Columbia,Hike,164,26.031746031746035
+Commerce,Cut,3,37.5
+Commerce,No Change,4,50
+Commerce,Hike,1,12.5
+Commonwealth Intl Series Tr,No Change,2,40
+Commonwealth Intl Series Tr,Hike,3,60
+Community Capital Management,Cut,1,25
+Community Capital Management,Hike,3,75
+Community Development Fund,No Change,1,100
+Concorde,Cut,1,100
+Conductor,Cut,3,75
+Conductor,No Change,1,25
+Conestoga Capital Advisors,Cut,1,25
+Conestoga Capital Advisors,No Change,3,75
+Congress,Cut,4,66.66666666666666
+Congress,No Change,2,33.33333333333333
+Convergence,Cut,1,50
+Convergence,Hike,1,50
+Cook & Bynum,No Change,1,100
+Copeland Funds,No Change,7,100
+Copley,Hike,1,100
+CornerCap,No Change,4,100
+Cornerstone,Hike,2,100
+Counterpoint Mutual Funds,Cut,3,25
+Counterpoint Mutual Funds,No Change,6,50
+Counterpoint Mutual Funds,Hike,3,25
+Cove Street Capital,Hike,1,100
+Covered Bridge,Hike,2,100
+Crawford,Cut,1,25
+Crawford,No Change,3,75
+"Credit Suisse (New York, NY)",No Change,11,73.33333333333333
+"Credit Suisse (New York, NY)",Hike,4,26.666666666666668
+CRM,No Change,2,22.22222222222222
+CRM,Hike,7,77.77777777777779
+CrossingBridge,Cut,1,100
+Crossmark Steward Funds,Cut,8,66.66666666666666
+Crossmark Steward Funds,No Change,4,33.33333333333333
+Crow Point,Cut,1,50
+Crow Point,Hike,1,50
+CS McKee,Hike,1,100
+Cullen Funds Trust,No Change,20,90.9090909090909
+Cullen Funds Trust,Hike,2,9.090909090909092
+Cushing Funds,No Change,2,100
+Cutler,No Change,1,100
+Dana Investment,Cut,1,25
+Dana Investment,No Change,3,75
+Davenport,Cut,3,60
+Davenport,No Change,2,40
+Davidson Mutual Funds,No Change,2,100
+Davis Funds,Cut,8,30.76923076923077
+Davis Funds,No Change,2,7.6923076923076925
+Davis Funds,Hike,16,61.53846153846154
+Day Hagan,Cut,3,100
+DDJ,No Change,2,66.66666666666666
+DDJ,Hike,1,33.33333333333333
+Dean Fund,Cut,1,50
+Dean Fund,No Change,1,50
+Dearborn Partners,Cut,3,100
+Deer Park,Hike,3,100
+Delaware Funds by Macquarie,Cut,97,41.452991452991455
+Delaware Funds by Macquarie,No Change,82,35.04273504273504
+Delaware Funds by Macquarie,Hike,55,23.504273504273502
+Destinations Funds,Cut,5,50
+Destinations Funds,No Change,3,30
+Destinations Funds,Hike,2,20
+Destra,Hike,3,100
+DF Dent Funds,Cut,3,60
+DF Dent Funds,No Change,2,40
+DGHM,No Change,4,100
+DGI,No Change,1,100
+Diamond Hill Funds,Cut,3,6.976744186046512
+Diamond Hill Funds,No Change,8,18.6046511627907
+Diamond Hill Funds,Hike,32,74.4186046511628
+Dimensional Fund Advisors,Cut,26,24.761904761904763
+Dimensional Fund Advisors,No Change,23,21.904761904761905
+Dimensional Fund Advisors,Hike,56,53.333333333333336
+Direxion Funds,Cut,1,50
+Direxion Funds,No Change,1,50
+Dodge & Cox,No Change,6,100
+Domini,Cut,4,40
+Domini,No Change,6,60
+DoubleLine,Cut,10,32.25806451612903
+DoubleLine,No Change,10,32.25806451612903
+DoubleLine,Hike,11,35.483870967741936
+Driehaus,Cut,5,50
+Driehaus,Hike,5,50
+Dunham Funds,Cut,15,35.714285714285715
+Dunham Funds,No Change,6,14.285714285714285
+Dunham Funds,Hike,21,50
+DuPont,No Change,2,100
+Dupree,No Change,7,70
+Dupree,Hike,3,30
+DWS,Cut,95,44.18604651162791
+DWS,No Change,57,26.51162790697674
+DWS,Hike,63,29.30232558139535
+E-Valuator funds,No Change,2,16.666666666666664
+E-Valuator funds,Hike,10,83.33333333333334
+Eagle MLP,Hike,3,100
+Eaton Vance,Cut,72,26.765799256505574
+Eaton Vance,No Change,82,30.483271375464682
+Eaton Vance,Hike,115,42.75092936802974
+Edgar Lomax,No Change,1,100
+Edgewood,No Change,2,100
+EIP Funds,Cut,2,100
+Elements Funds,Cut,1,20
+Elements Funds,No Change,4,80
+Emerald,Cut,5,31.25
+Emerald,No Change,8,50
+Emerald,Hike,3,18.75
+Empiric Funds,Hike,2,100
+Ensemble Fund,No Change,1,100
+EntrepreneurShares,Cut,1,33.33333333333333
+EntrepreneurShares,No Change,1,33.33333333333333
+EntrepreneurShares,Hike,1,33.33333333333333
+Equity Investment Corp,Cut,3,100
+EquityCompass,No Change,3,100
+Essex Funds,Cut,2,100
+Euro Pacific Asset Management,No Change,9,100
+Eventide Funds,Cut,10,55.55555555555556
+Eventide Funds,No Change,8,44.44444444444444
+Evermore,Hike,2,100
+Fairholme,Cut,1,33.33333333333333
+Fairholme,No Change,2,66.66666666666666
+FAM,No Change,3,60
+FAM,Hike,2,40
+FCI Funds,No Change,1,100
+Federated,Cut,81,38.75598086124402
+Federated,No Change,89,42.58373205741627
+Federated,Hike,39,18.660287081339714
+Fidelity Investments,Cut,357,42.75449101796407
+Fidelity Investments,No Change,230,27.54491017964072
+Fidelity Investments,Hike,248,29.700598802395213
+Fiera Capital,Cut,3,27.27272727272727
+Fiera Capital,No Change,7,63.63636363636363
+Fiera Capital,Hike,1,9.090909090909092
+FinTrust,Hike,2,100
+First Eagle,Cut,7,18.421052631578945
+First Eagle,No Change,9,23.684210526315788
+First Eagle,Hike,22,57.89473684210527
+First State,Hike,1,100
+First Trust,No Change,5,45.45454545454545
+First Trust,Hike,6,54.54545454545454
+First Western Capital Mgt,No Change,3,100
+Firsthand Funds,Cut,1,50
+Firsthand Funds,No Change,1,50
+Fisher Investments,No Change,1,100
+"Flippin, Bruce & Porter Funds",No Change,2,100
+FMI Funds,Cut,4,66.66666666666666
+FMI Funds,No Change,2,33.33333333333333
+Footprints,No Change,1,100
+Forester,No Change,4,100
+FormulaFolios,Cut,3,100
+Fort Pitt Capital Funds,No Change,1,100
+Foundry,Hike,2,100
+FPA,No Change,2,33.33333333333333
+FPA,Hike,4,66.66666666666666
+Frank Funds,Cut,1,25
+Frank Funds,No Change,3,75
+Franklin Templeton Investments,Cut,136,32
+Franklin Templeton Investments,No Change,69,16.235294117647058
+Franklin Templeton Investments,Hike,220,51.76470588235295
+Freedom Funds,Cut,1,100
+Friess Associates,No Change,2,100
+Frontier Funds,No Change,6,85.71428571428571
+Frontier Funds,Hike,1,14.285714285714285
+FS Investments,Hike,2,100
+Fulcrum,No Change,1,50
+Fulcrum,Hike,1,50
+Fuller & Thaler,Cut,3,33.33333333333333
+Fuller & Thaler,No Change,1,11.11111111111111
+Fuller & Thaler,Hike,5,55.55555555555556
+Fund X,No Change,2,40
+Fund X,Hike,3,60
+FundVantage,Cut,1,100
+Gabelli,Cut,33,43.42105263157895
+Gabelli,No Change,16,21.052631578947366
+Gabelli,Hike,27,35.526315789473685
+Gator,No Change,1,100
+Glenmede,Cut,4,17.391304347826086
+Glenmede,No Change,3,13.043478260869565
+Glenmede,Hike,16,69.56521739130434
+GMO,Cut,16,34.78260869565217
+GMO,No Change,20,43.47826086956522
+GMO,Hike,10,21.73913043478261
+Goehring & Rozencwajg,No Change,2,100
+Goldman Sachs,Cut,203,36.25
+Goldman Sachs,No Change,184,32.857142857142854
+Goldman Sachs,Hike,173,30.892857142857146
+Golub,No Change,1,100
+Good Harbor,Hike,3,100
+GoodHaven,Hike,1,100
+Gotham,Cut,11,61.111111111111114
+Gotham,No Change,4,22.22222222222222
+Gotham,Hike,3,16.666666666666664
+GQG Partners,Cut,3,100
+Grandeur Peak Funds,Cut,5,38.46153846153847
+Grandeur Peak Funds,No Change,4,30.76923076923077
+Grandeur Peak Funds,Hike,4,30.76923076923077
+Grant Park,Hike,4,100
+Great-West Funds,Cut,48,31.788079470198678
+Great-West Funds,No Change,98,64.90066225165563
+Great-West Funds,Hike,5,3.3112582781456954
+Great Lakes Funds,Cut,2,33.33333333333333
+Great Lakes Funds,No Change,4,66.66666666666666
+Green Century,No Change,1,100
+Green Owl,No Change,1,100
+Green Square Asset Management,Hike,1,100
+Greenspring,Hike,1,100
+Guggenheim Investments,Cut,20,24.390243902439025
+Guggenheim Investments,No Change,21,25.609756097560975
+Guggenheim Investments,Hike,41,50
+GuideMark,Cut,4,23.52941176470588
+GuideMark,No Change,9,52.94117647058824
+GuideMark,Hike,4,23.52941176470588
+GuidePath,Cut,7,100
+GuideStone Funds,Cut,14,33.33333333333333
+GuideStone Funds,No Change,9,21.428571428571427
+GuideStone Funds,Hike,19,45.23809523809524
+Guinness Atkinson,Cut,5,55.55555555555556
+Guinness Atkinson,No Change,3,33.33333333333333
+Guinness Atkinson,Hike,1,11.11111111111111
+Hamlin Funds,Cut,2,100
+Hancock Horizon,Cut,5,26.31578947368421
+Hancock Horizon,No Change,12,63.1578947368421
+Hancock Horizon,Hike,2,10.526315789473683
+Hanlon,Hike,8,100
+Harbor,Cut,12,17.391304347826086
+Harbor,No Change,12,17.391304347826086
+Harbor,Hike,45,65.21739130434783
+Harding Loevner,Cut,8,47.05882352941176
+Harding Loevner,No Change,7,41.17647058823529
+Harding Loevner,Hike,2,11.76470588235294
+Hartford Mutual Funds,Cut,143,33.568075117370896
+Hartford Mutual Funds,No Change,150,35.2112676056338
+Hartford Mutual Funds,Hike,133,31.220657276995308
+Harvest Funds,No Change,2,100
+Haverford,Cut,1,100
+Heartland,No Change,2,28.57142857142857
+Heartland,Hike,5,71.42857142857143
+Hedeker Wealth,Cut,1,100
+Heitman,Hike,2,100
+Hennessy,No Change,4,15.384615384615385
+Hennessy,Hike,22,84.61538461538461
+Highland Funds,Cut,6,25
+Highland Funds,No Change,1,4.166666666666666
+Highland Funds,Hike,17,70.83333333333334
+Hillman Capital Management,No Change,1,100
+Hodges,Cut,2,28.57142857142857
+Hodges,No Change,5,71.42857142857143
+Holbrook Holdings,No Change,2,100
+Holland Series Trust,No Change,1,100
+Homestead,No Change,2,33.33333333333333
+Homestead,Hike,4,66.66666666666666
+Hood River Capital Management,Cut,1,33.33333333333333
+Hood River Capital Management,No Change,2,66.66666666666666
+Horizon Investments,Cut,7,53.84615384615385
+Horizon Investments,No Change,5,38.46153846153847
+Horizon Investments,Hike,1,7.6923076923076925
+Hotchkis & Wiley,Cut,12,46.15384615384615
+Hotchkis & Wiley,No Change,8,30.76923076923077
+Hotchkis & Wiley,Hike,6,23.076923076923077
+Howard Capital Management,Cut,10,90.9090909090909
+Howard Capital Management,Hike,1,9.090909090909092
+HSBC,Cut,4,57.14285714285714
+HSBC,No Change,3,42.857142857142854
+Huber Funds,Cut,2,25
+Huber Funds,No Change,3,37.5
+Huber Funds,Hike,3,37.5
+Hussman Funds,No Change,1,33.33333333333333
+Hussman Funds,Hike,2,66.66666666666666
+HVIA Equity Fund,No Change,1,100
+ICM Series Trust,No Change,1,100
+ICON Funds,Cut,4,11.428571428571429
+ICON Funds,No Change,24,68.57142857142857
+ICON Funds,Hike,7,20
+iM Global Partner (US),No Change,1,100
+IMS,Cut,1,33.33333333333333
+IMS,No Change,1,33.33333333333333
+IMS,Hike,1,33.33333333333333
+Independent Franchise Partners,No Change,1,100
+Infinity Q,Cut,2,100
+Innealta Capital,No Change,4,100
+IntegrityVikingFunds,Cut,1,3.7037037037037033
+IntegrityVikingFunds,No Change,20,74.07407407407408
+IntegrityVikingFunds,Hike,6,22.22222222222222
+Intrepid Funds,No Change,5,83.33333333333334
+Intrepid Funds,Hike,1,16.666666666666664
+Invesco,Cut,251,35.5021216407355
+Invesco,No Change,230,32.53182461103253
+Invesco,Hike,226,31.966053748231964
+Investment House Funds,Cut,1,100
+Iron Funds,Cut,2,100
+Ironclad Funds,No Change,1,100
+Issachar Fund,Cut,1,100
+IVA Funds,Cut,6,100
+Ivy Funds,Cut,148,59.43775100401606
+Ivy Funds,No Change,53,21.285140562248998
+Ivy Funds,Hike,48,19.27710843373494
+Jackson National,Cut,47,21.75925925925926
+Jackson National,No Change,116,53.70370370370371
+Jackson National,Hike,53,24.537037037037038
+Jackson Square,No Change,10,100
+Jacob,Cut,3,60
+Jacob,No Change,2,40
+JAG Capital Management,Cut,2,100
+Jaguar,Cut,1,100
+James Advantage,No Change,3,60
+James Advantage,Hike,2,40
+James Alpha Advisors,Cut,22,47.82608695652174
+James Alpha Advisors,No Change,8,17.391304347826086
+James Alpha Advisors,Hike,16,34.78260869565217
+Janus Henderson,Cut,110,33.53658536585366
+Janus Henderson,No Change,52,15.853658536585366
+Janus Henderson,Hike,166,50.609756097560975
+Jensen,Cut,4,66.66666666666666
+Jensen,No Change,2,33.33333333333333
+JOHCM Funds,Cut,7,50
+JOHCM Funds,No Change,4,28.57142857142857
+JOHCM Funds,Hike,3,21.428571428571427
+John Hancock,Cut,72,13.610586011342155
+John Hancock,No Change,187,35.34971644612476
+John Hancock,Hike,270,51.03969754253308
+Johnson Mutual Funds,No Change,12,100
+JPMorgan,Cut,176,32.29357798165138
+JPMorgan,No Change,249,45.68807339449542
+JPMorgan,Hike,120,22.018348623853214
+Keeley,Cut,2,33.33333333333333
+Keeley,No Change,2,33.33333333333333
+Keeley,Hike,2,33.33333333333333
+Kellner,Hike,2,100
+Kempner,Hike,2,100
+Kinetics,Cut,4,12.121212121212121
+Kinetics,No Change,29,87.87878787878788
+Kirr Marbach Partners,No Change,1,100
+Knowledge Leaders Capital,Cut,2,100
+Kopernik,Hike,3,100
+KP Funds,Cut,3,21.428571428571427
+KP Funds,No Change,11,78.57142857142857
+Ladenburg Thalmann,No Change,15,100
+Lateef,Cut,2,100
+Laudus Funds,No Change,2,100
+Lawson Kroeker,No Change,1,100
+Lazard,Cut,25,37.878787878787875
+Lazard,No Change,19,28.78787878787879
+Lazard,Hike,22,33.33333333333333
+LEADER,Hike,10,100
+Leavell,No Change,1,50
+Leavell,Hike,1,50
+LeeHawaii,Cut,1,100
+Legg Mason,Cut,116,34.42136498516321
+Legg Mason,No Change,133,39.46587537091988
+Legg Mason,Hike,88,26.112759643916917
+Leland Funds,Hike,3,100
+Leuthold,Cut,3,50
+Leuthold,No Change,1,16.666666666666664
+Leuthold,Hike,2,33.33333333333333
+LGM Capital,Cut,2,100
+Liberty Street,Cut,3,25
+Liberty Street,No Change,6,50
+Liberty Street,Hike,3,25
+Lisanti SmallCap,Cut,1,100
+Litman Gregory Masters Funds,Cut,2,28.57142857142857
+Litman Gregory Masters Funds,No Change,2,28.57142857142857
+Litman Gregory Masters Funds,Hike,3,42.857142857142854
+LKCM,No Change,6,100
+LMCG Funds,No Change,2,100
+LoCorr Funds,Cut,6,40
+LoCorr Funds,No Change,3,20
+LoCorr Funds,Hike,6,40
+Logan Capital,No Change,1,50
+Logan Capital,Hike,1,50
+Logan Circle Partners,No Change,2,100
+Long Short,Cut,1,100
+Longboard,Cut,2,50
+Longboard,Hike,2,50
+Longleaf Partners,Cut,2,50
+Longleaf Partners,No Change,1,25
+Longleaf Partners,Hike,1,25
+Loomis Sayles Funds,Cut,3,14.285714285714285
+Loomis Sayles Funds,No Change,15,71.42857142857143
+Loomis Sayles Funds,Hike,3,14.285714285714285
+Lord Abbett,Cut,56,15.135135135135137
+Lord Abbett,No Change,125,33.78378378378378
+Lord Abbett,Hike,189,51.08108108108108
+LS,No Change,1,100
+LSV Fund,Cut,1,8.333333333333332
+LSV Fund,No Change,9,75
+LSV Fund,Hike,2,16.666666666666664
+Lyrical,No Change,1,50
+Lyrical,Hike,1,50
+Macquarie Investment Management,Cut,1,16.666666666666664
+Macquarie Investment Management,No Change,4,66.66666666666666
+Macquarie Investment Management,Hike,1,16.666666666666664
+Madison Funds,Cut,3,7.317073170731707
+Madison Funds,No Change,38,92.6829268292683
+MAI,No Change,2,100
+Main Management,No Change,1,100
+MainGate Trust,Hike,3,100
+MainStay,Cut,42,19.444444444444446
+MainStay,No Change,38,17.59259259259259
+MainStay,Hike,136,62.96296296296296
+Mairs & Power,Cut,1,33.33333333333333
+Mairs & Power,Hike,2,66.66666666666666
+Manning & Napier,Cut,19,26.38888888888889
+Manning & Napier,No Change,51,70.83333333333334
+Manning & Napier,Hike,2,2.7777777777777777
+Manor Investment Funds,No Change,3,100
+Marathon Funds,No Change,1,100
+Marketfield Funds,Hike,4,100
+Marmont Funds,No Change,2,100
+Marshfield,No Change,1,100
+Marsico Investment Fund,Cut,3,60
+Marsico Investment Fund,Hike,2,40
+MassMutual,Cut,122,35.67251461988304
+MassMutual,No Change,60,17.543859649122805
+MassMutual,Hike,160,46.783625730994146
+Matrix Advisors Funds Trust,No Change,1,100
+Matrix/LMH,No Change,1,100
+Matthew 25,Cut,1,100
+Matthews Asia Funds,Cut,13,38.23529411764706
+Matthews Asia Funds,No Change,8,23.52941176470588
+Matthews Asia Funds,Hike,13,38.23529411764706
+MD Sass,No Change,1,100
+Meeder Funds,Cut,1,3.7037037037037033
+Meeder Funds,No Change,1,3.7037037037037033
+Meeder Funds,Hike,25,92.5925925925926
+Meehan Focus,No Change,1,100
+Mercator,No Change,1,100
+Mercer Funds,Cut,1,14.285714285714285
+Mercer Funds,No Change,3,42.857142857142854
+Mercer Funds,Hike,3,42.857142857142854
+Meridian,Cut,6,33.33333333333333
+Meridian,No Change,4,22.22222222222222
+Meridian,Hike,8,44.44444444444444
+Meritage Portfolio Management,No Change,5,100
+Merk Funds,Hike,2,100
+Metropolitan West Funds,Cut,4,20
+Metropolitan West Funds,No Change,13,65
+Metropolitan West Funds,Hike,3,15
+MFS,Cut,260,39.69465648854962
+MFS,No Change,292,44.58015267175573
+MFS,Hike,103,15.725190839694655
+MH Elite,No Change,4,100
+Midas,Hike,2,100
+Miller Investment,Cut,1,20
+Miller Investment,Hike,4,80
+Miller Value Funds,Hike,11,100
+Mirae Asset Global Investments,Cut,9,100
+Mission Funds,Cut,4,100
+Moerus Funds,No Change,2,100
+Moncapfund,No Change,1,100
+Mondrian,Cut,2,66.66666666666666
+Mondrian,No Change,1,33.33333333333333
+Monetta,Hike,2,100
+Monteagle Funds,Cut,2,33.33333333333333
+Monteagle Funds,No Change,1,16.666666666666664
+Monteagle Funds,Hike,3,50
+Morgan Stanley,Cut,70,32.55813953488372
+Morgan Stanley,No Change,90,41.86046511627907
+Morgan Stanley,Hike,55,25.581395348837212
+Motley Fool,Cut,1,25
+Motley Fool,No Change,2,50
+Motley Fool,Hike,1,25
+MP 63,Hike,1,100
+MProved,Hike,4,100
+Muhlenkamp,Cut,1,100
+Mundoval Funds,No Change,1,100
+Mutual of America,Cut,3,11.11111111111111
+Mutual of America,No Change,12,44.44444444444444
+Mutual of America,Hike,12,44.44444444444444
+Muzinich,Cut,3,50
+Muzinich,No Change,2,33.33333333333333
+Muzinich,Hike,1,16.666666666666664
+Nationwide,Cut,61,35.88235294117647
+Nationwide,No Change,45,26.47058823529412
+Nationwide,Hike,64,37.64705882352941
+Natixis Funds,Cut,43,36.440677966101696
+Natixis Funds,No Change,48,40.67796610169492
+Natixis Funds,Hike,27,22.88135593220339
+Navigator Funds,Cut,6,50
+Navigator Funds,No Change,2,16.666666666666664
+Navigator Funds,Hike,4,33.33333333333333
+Needham,Cut,6,100
+Neiman Funds,No Change,3,100
+Neuberger Berman,Cut,59,34.30232558139535
+Neuberger Berman,No Change,62,36.04651162790697
+Neuberger Berman,Hike,51,29.651162790697676
+New Alternatives,Cut,2,100
+New Covenant,No Change,3,100
+Newfound,No Change,6,100
+Nicholas,Cut,2,25
+Nicholas,No Change,3,37.5
+Nicholas,Hike,3,37.5
+Ninety One,Cut,1,50
+Ninety One,No Change,1,50
+North Country Funds,Cut,1,50
+North Country Funds,Hike,1,50
+North Square,Cut,3,25
+North Square,No Change,7,58.333333333333336
+North Square,Hike,2,16.666666666666664
+North Star,Cut,3,60
+North Star,Hike,2,40
+NorthCoast,No Change,1,100
+Northeast Investors,Hike,1,100
+Northern Funds,Cut,2,6.666666666666667
+Northern Funds,No Change,22,73.33333333333333
+Northern Funds,Hike,6,20
+NorthQuest Fund,Cut,1,100
+Nottingham,Cut,1,16.666666666666664
+Nottingham,No Change,1,16.666666666666664
+Nottingham,Hike,4,66.66666666666666
+Nuance Investments,No Change,3,42.857142857142854
+Nuance Investments,Hike,4,57.14285714285714
+Nuveen,Cut,98,33.67697594501718
+Nuveen,No Change,122,41.92439862542955
+Nuveen,Hike,71,24.398625429553263
+Nysa,Cut,1,100
+O'Shaughnessy Asset Management,Cut,1,50
+O'Shaughnessy Asset Management,No Change,1,50
+Oak Associates,Cut,1,14.285714285714285
+Oak Associates,No Change,1,14.285714285714285
+Oak Associates,Hike,5,71.42857142857143
+Oakhurst,Hike,1,100
+Oakmark,Cut,4,14.814814814814813
+Oakmark,No Change,3,11.11111111111111
+Oakmark,Hike,20,74.07407407407408
+Oberweis,Cut,2,14.285714285714285
+Oberweis,No Change,8,57.14285714285714
+Oberweis,Hike,4,28.57142857142857
+OCM,Cut,1,50
+OCM,Hike,1,50
+Old Westbury,Cut,2,28.57142857142857
+Old Westbury,No Change,5,71.42857142857143
+Olstein,Cut,2,40
+Olstein,No Change,3,60
+Orchard Capital Management,Cut,2,100
+Orinda Funds,Cut,3,100
+Osterweis,Cut,3,60
+Osterweis,No Change,1,20
+Osterweis,Hike,1,20
+Otter Creek,Hike,2,100
+Pacific Capital,Hike,2,100
+Pacific Funds Series Trust,Cut,6,7.6923076923076925
+Pacific Funds Series Trust,No Change,70,89.74358974358975
+Pacific Funds Series Trust,Hike,2,2.564102564102564
+Palmer Square,No Change,1,50
+Palmer Square,Hike,1,50
+Papp,No Change,1,100
+Paradigm Funds,No Change,3,100
+Parnassus,Cut,4,40
+Parnassus,No Change,6,60
+Patriot,Cut,3,100
+Pax World,Cut,6,25
+Pax World,No Change,14,58.333333333333336
+Pax World,Hike,4,16.666666666666664
+Paydenfunds,Cut,7,22.58064516129032
+Paydenfunds,No Change,22,70.96774193548387
+Paydenfunds,Hike,2,6.451612903225806
+Payson Funds,Cut,1,100
+Pear Tree Funds,Cut,5,41.66666666666667
+Pear Tree Funds,No Change,2,16.666666666666664
+Pear Tree Funds,Hike,5,41.66666666666667
+Penn Capital Management,Cut,1,20
+Penn Capital Management,No Change,4,80
+Penn Mutual Asset Management,Cut,1,100
+Perkins,No Change,1,100
+Permanent Portfolio,Cut,3,30
+Permanent Portfolio,No Change,1,10
+Permanent Portfolio,Hike,6,60
+Perritt,Hike,2,100
+Persimmon Funds,Cut,1,100
+PFM Multi-Manager Series Trust,No Change,3,100
+PGIM Funds (Prudential),Cut,68,18.83656509695291
+PGIM Funds (Prudential),No Change,142,39.335180055401665
+PGIM Funds (Prudential),Hike,151,41.82825484764543
+PIA Mutual Funds,No Change,1,20
+PIA Mutual Funds,Hike,4,80
+PIMCO,Cut,61,18.76923076923077
+PIMCO,No Change,55,16.923076923076923
+PIMCO,Hike,209,64.3076923076923
+PineBridge,Hike,2,100
+Pinnacle,Cut,1,25
+Pinnacle,No Change,3,75
+Pinnacle Capital Management,Hike,2,100
+Pioneer Investments,Cut,43,38.73873873873874
+Pioneer Investments,No Change,24,21.62162162162162
+Pioneer Investments,Hike,44,39.63963963963964
+Plumb Funds,Cut,2,100
+PMC Funds,Cut,1,50
+PMC Funds,No Change,1,50
+Polaris Funds,No Change,1,100
+Polen Capital,No Change,4,57.14285714285714
+Polen Capital,Hike,3,42.857142857142854
+Poplar Forest Capital,No Change,4,100
+Port Street Investments,Cut,1,100
+Portfolio Strategies,No Change,2,100
+Potkul Funds,No Change,1,100
+Power Mutual Funds,Cut,3,50
+Power Mutual Funds,No Change,3,50
+Ppm America,No Change,6,85.71428571428571
+Ppm America,Hike,1,14.285714285714285
+Praxis Mutual Funds,Cut,1,20
+Praxis Mutual Funds,No Change,3,60
+Praxis Mutual Funds,Hike,1,20
+Preserver Funds,Cut,1,100
+Price Asset Management,No Change,3,100
+PRIMECAP Odyssey Funds,No Change,2,66.66666666666666
+PRIMECAP Odyssey Funds,Hike,1,33.33333333333333
+Princeton,Cut,2,50
+Princeton,No Change,2,50
+Principal Funds,Cut,63,15.035799522673033
+Principal Funds,No Change,255,60.859188544152744
+Principal Funds,Hike,101,24.105011933174225
+Private Capital Management,Hike,2,100
+ProFunds,No Change,2,50
+ProFunds,Hike,2,50
+Prospector Funds,Cut,2,100
+Provident,Cut,1,100
+"PT Asset Management, LLC (PTAM)",Cut,1,33.33333333333333
+"PT Asset Management, LLC (PTAM)",No Change,2,66.66666666666666
+Putnam,Cut,137,40.41297935103245
+Putnam,No Change,75,22.123893805309734
+Putnam,Hike,127,37.46312684365782
+Pzena,Cut,2,25
+Pzena,No Change,1,12.5
+Pzena,Hike,5,62.5
+Quaker,Hike,4,100
+Queens Road Funds,Cut,1,50
+Queens Road Funds,No Change,1,50
+Ranger Funds,No Change,3,75
+Ranger Funds,Hike,1,25
+Rareview Capital,No Change,1,50
+Rareview Capital,Hike,1,50
+Rational Funds,Cut,3,14.285714285714285
+Rational Funds,No Change,13,61.904761904761905
+Rational Funds,Hike,5,23.809523809523807
+RBB Funds,No Change,2,66.66666666666666
+RBB Funds,Hike,1,33.33333333333333
+RBC Global Asset Management.,Cut,17,44.73684210526316
+RBC Global Asset Management.,No Change,16,42.10526315789473
+RBC Global Asset Management.,Hike,5,13.157894736842104
+Reaves Select Research,No Change,1,100
+Redmont,Cut,1,100
+Redwood,Cut,1,14.285714285714285
+Redwood,No Change,3,42.857142857142854
+Redwood,Hike,3,42.857142857142854
+Reinhartfunds,Cut,2,66.66666666666666
+Reinhartfunds,No Change,1,33.33333333333333
+REMSGroup,Cut,2,50
+REMSGroup,Hike,2,50
+RESQ Funds,Cut,6,100
+Reynolds,Hike,1,100
+Rice Hall James,No Change,2,100
+River Canyon,No Change,1,100
+Riverbridge,Cut,2,50
+Riverbridge,Hike,2,50
+RiverNorth Funds,Cut,2,33.33333333333333
+RiverNorth Funds,No Change,2,33.33333333333333
+RiverNorth Funds,Hike,2,33.33333333333333
+RiverPark Funds,Cut,7,70
+RiverPark Funds,No Change,3,30
+RMB Funds,Cut,5,50
+RMB Funds,No Change,1,10
+RMB Funds,Hike,4,40
+RNC Genter Capital Management,No Change,1,100
+Rockefeller,Cut,1,25
+Rockefeller,No Change,2,50
+Rockefeller,Hike,1,25
+Rondure Global,No Change,4,100
+Royce Investment Partners,Cut,6,13.333333333333334
+Royce Investment Partners,No Change,10,22.22222222222222
+Royce Investment Partners,Hike,29,64.44444444444444
+RQSI,Cut,2,100
+Rrecurrent Advisors,No Change,1,100
+Russell,Cut,99,55.3072625698324
+Russell,No Change,45,25.139664804469277
+Russell,Hike,35,19.553072625698324
+RWC,No Change,1,50
+RWC,Hike,1,50
+Ryan Labs,No Change,2,100
+Rydex Funds,Hike,77,100
+SA Funds,Cut,14,77.77777777777779
+SA Funds,No Change,4,22.22222222222222
+Salient Funds,Cut,11,55.00000000000001
+Salient Funds,No Change,4,20
+Salient Funds,Hike,5,25
+Saratoga,Cut,23,47.91666666666667
+Saratoga,No Change,5,10.416666666666668
+Saratoga,Hike,20,41.66666666666667
+Sarofim,No Change,1,100
+Saturna Capital,No Change,1,100
+Saturna Sustainable Funds,No Change,2,100
+Savos Investments Trust,No Change,1,100
+Scharf Investments,Cut,2,33.33333333333333
+Scharf Investments,No Change,2,33.33333333333333
+Scharf Investments,Hike,2,33.33333333333333
+Schneider Funds,No Change,1,100
+Schroder,Cut,1,25
+Schroder,No Change,3,75
+Schwab Funds,Cut,4,16
+Schwab Funds,No Change,16,64
+Schwab Funds,Hike,5,20
+Schwartz,No Change,1,100
+Seafarer Funds,No Change,2,50
+Seafarer Funds,Hike,2,50
+Securian,Cut,1,33.33333333333333
+Securian,No Change,2,66.66666666666666
+Segall Bryant & Hamill,Cut,14,50
+Segall Bryant & Hamill,No Change,13,46.42857142857143
+Segall Bryant & Hamill,Hike,1,3.571428571428571
+SEI,Cut,18,12.76595744680851
+SEI,No Change,108,76.59574468085107
+SEI,Hike,15,10.638297872340425
+Selected Funds,Cut,1,25
+Selected Funds,Hike,3,75
+Selective,Cut,2,100
+Semper,No Change,2,40
+Semper,Hike,3,60
+Sequoia,No Change,1,100
+Seven Canyons,Cut,1,33.33333333333333
+Seven Canyons,No Change,2,66.66666666666666
+Sextant Mutual Funds,Cut,1,12.5
+Sextant Mutual Funds,No Change,2,25
+Sextant Mutual Funds,Hike,5,62.5
+Shelton Capital Management,Cut,2,14.285714285714285
+Shelton Capital Management,Hike,12,85.71428571428571
+Shenkman Funds,Cut,1,16.666666666666664
+Shenkman Funds,No Change,4,66.66666666666666
+Shenkman Funds,Hike,1,16.666666666666664
+Sierra Trust,No Change,4,40
+Sierra Trust,Hike,6,60
+Silk Invest,Cut,1,100
+SilverPepper,Cut,1,25
+SilverPepper,Hike,3,75
+Sirios,Hike,1,100
+Sit,Cut,9,50
+Sit,No Change,9,50
+Six Circles,Cut,4,100
+Smead Funds,Cut,2,33.33333333333333
+Smead Funds,No Change,2,33.33333333333333
+Smead Funds,Hike,2,33.33333333333333
+SMI Funds,Cut,1,33.33333333333333
+SMI Funds,Hike,2,66.66666666666666
+Smith Group,Hike,2,100
+Snow Capital Funds,Cut,6,100
+Sound Shore,No Change,1,50
+Sound Shore,Hike,1,50
+Soundwatch Capital,Cut,1,100
+Sparrow,Cut,3,100
+SPDR State Street Global Advisors,Cut,1,100
+Spirit of America,Cut,4,33.33333333333333
+Spirit of America,No Change,6,50
+Spirit of America,Hike,2,16.666666666666664
+Sprott,Hike,1,100
+Spyglass Capital Management,No Change,1,100
+Stadion Funds,Cut,4,44.44444444444444
+Stadion Funds,No Change,4,44.44444444444444
+Stadion Funds,Hike,1,11.11111111111111
+State Farm,No Change,4,100
+State Street Global Advisors,Cut,24,47.05882352941176
+State Street Global Advisors,No Change,13,25.49019607843137
+State Street Global Advisors,Hike,14,27.450980392156865
+Sterling Capital Funds,Cut,19,35.84905660377358
+Sterling Capital Funds,No Change,19,35.84905660377358
+Sterling Capital Funds,Hike,15,28.30188679245283
+Stone Harbor,Cut,1,14.285714285714285
+Stone Harbor,No Change,6,85.71428571428571
+STONE RIDGE,Hike,1,100
+Stralem Fund,No Change,1,100
+Strategic Global Advisors,No Change,2,100
+Summit Global Investments,Cut,3,42.857142857142854
+Summit Global Investments,No Change,4,57.14285714285714
+Superfund,Cut,2,100
+Swan,Cut,6,50
+Swan,Hike,6,50
+Symons,Cut,1,100
+T. Rowe Price,Cut,133,40.79754601226993
+T. Rowe Price,No Change,148,45.39877300613497
+T. Rowe Price,Hike,45,13.803680981595093
+Tanaka,Hike,1,100
+Taylor Frigon Capital Management,No Change,1,100
+TCM Funds,No Change,1,100
+TCW,Cut,24,68.57142857142857
+TCW,No Change,10,28.57142857142857
+TCW,Hike,1,2.857142857142857
+Teberg,No Change,1,100
+Teton Westwood Funds,Cut,1,4.166666666666666
+Teton Westwood Funds,No Change,11,45.83333333333333
+Teton Westwood Funds,Hike,12,50
+The Pacific Financial Group,Cut,10,76.92307692307693
+The Pacific Financial Group,Hike,3,23.076923076923077
+Third Avenue,No Change,7,77.77777777777779
+Third Avenue,Hike,2,22.22222222222222
+Thomas White Funds,No Change,3,100
+Thompson IM,Cut,1,33.33333333333333
+Thompson IM,No Change,2,66.66666666666666
+Thomson Horstmann & Bryant,No Change,1,50
+Thomson Horstmann & Bryant,Hike,1,50
+Thornburg,Cut,17,18.681318681318682
+Thornburg,No Change,53,58.24175824175825
+Thornburg,Hike,21,23.076923076923077
+Thrivent Funds,Cut,8,21.62162162162162
+Thrivent Funds,No Change,8,21.62162162162162
+Thrivent Funds,Hike,21,56.75675675675676
+TIAA Investments,Cut,44,18.88412017167382
+TIAA Investments,No Change,72,30.90128755364807
+TIAA Investments,Hike,117,50.21459227467812
+Timothy Plan,Cut,12,36.36363636363637
+Timothy Plan,No Change,4,12.121212121212121
+Timothy Plan,Hike,17,51.515151515151516
+TOBAM Core Investments,Hike,1,100
+Tocqueville,Cut,1,33.33333333333333
+Tocqueville,No Change,1,33.33333333333333
+Tocqueville,Hike,1,33.33333333333333
+Toews Funds,No Change,6,85.71428571428571
+Toews Funds,Hike,1,14.285714285714285
+TOPS,No Change,15,48.38709677419355
+TOPS,Hike,16,51.61290322580645
+Torray,Cut,1,100
+Torray Resolute,No Change,2,100
+Tortoise Capital Advisors,No Change,6,60
+Tortoise Capital Advisors,Hike,4,40
+Touchstone,Cut,37,31.092436974789916
+Touchstone,No Change,70,58.82352941176471
+Touchstone,Hike,12,10.084033613445378
+Towle,Cut,1,100
+Transamerica,Cut,52,23.74429223744292
+Transamerica,No Change,53,24.200913242009133
+Transamerica,Hike,114,52.054794520547944
+TransWestern Funds,No Change,1,100
+Tributary Funds,Cut,7,63.63636363636363
+Tributary Funds,No Change,4,36.36363636363637
+Trillium Mutual Funds,Cut,2,66.66666666666666
+Trillium Mutual Funds,No Change,1,33.33333333333333
+Trust for Credit Unions,Cut,4,100
+TS&W Funds,No Change,1,100
+"Tweedy, Browne",Cut,1,25
+"Tweedy, Browne",No Change,3,75
+Two Oaks,Cut,1,100
+U.S. Global Investors,Cut,3,33.33333333333333
+U.S. Global Investors,No Change,3,33.33333333333333
+U.S. Global Investors,Hike,3,33.33333333333333
+UBS Asset Management,Cut,15,25.862068965517242
+UBS Asset Management,No Change,25,43.103448275862064
+UBS Asset Management,Hike,18,31.03448275862069
+Union Street Partners,No Change,3,100
+Upright Investments Trust,Cut,1,33.33333333333333
+Upright Investments Trust,Hike,2,66.66666666666666
+USA Mutuals,No Change,5,100
+USCA,No Change,1,100
+VALIC,Cut,12,28.57142857142857
+VALIC,No Change,24,57.14285714285714
+VALIC,Hike,6,14.285714285714285
+Value Line,Cut,7,53.84615384615385
+Value Line,No Change,6,46.15384615384615
+VanEck,No Change,13,68.42105263157895
+VanEck,Hike,6,31.57894736842105
+Vanguard,Cut,23,21.49532710280374
+Vanguard,No Change,79,73.83177570093457
+Vanguard,Hike,5,4.672897196261682
+Vaughan Nelson,No Change,2,100
+Vericimetry Funds,No Change,1,100
+Vert Asset Management,No Change,1,100
+Victory Capital,Cut,49,19.140625
+Victory Capital,No Change,144,56.25
+Victory Capital,Hike,63,24.609375
+Villere,Cut,1,50
+Villere,Hike,1,50
+Virtus,Cut,46,24.864864864864867
+Virtus,No Change,88,47.56756756756757
+Virtus,Hike,51,27.56756756756757
+Vivaldi,Cut,2,50
+Vivaldi,Hike,2,50
+Volumetric,No Change,1,100
+Vontobel,No Change,1,100
+Voya,Cut,77,16.885964912280702
+Voya,No Change,153,33.55263157894737
+Voya,Hike,226,49.56140350877193
+Vulcan Value Partners,No Change,1,50
+Vulcan Value Partners,Hike,1,50
+Waddell & Reed,No Change,6,100
+Wall Street,No Change,1,100
+Walthausen Funds,No Change,3,75
+Walthausen Funds,Hike,1,25
+Wasatch,Cut,11,42.30769230769231
+Wasatch,No Change,9,34.61538461538461
+Wasatch,Hike,6,23.076923076923077
+Wasmer Schroeder,Cut,1,100
+Wavelength Funds,No Change,1,100
+Waycross,Cut,1,100
+WCM Investment Management,Cut,2,40
+WCM Investment Management,No Change,3,60
+Wealthfront,Cut,1,100
+Weiss,Cut,2,100
+Weitz,Cut,3,21.428571428571427
+Weitz,No Change,7,50
+Weitz,Hike,4,28.57142857142857
+Wellington Shields,Hike,1,100
+Wells Fargo Funds,Cut,148,34.4988344988345
+Wells Fargo Funds,No Change,209,48.717948717948715
+Wells Fargo Funds,Hike,72,16.783216783216783
+WesMark,Cut,2,33.33333333333333
+WesMark,No Change,1,16.666666666666664
+WesMark,Hike,3,50
+Westchester Capital,Cut,2,33.33333333333333
+Westchester Capital,Hike,4,66.66666666666666
+Westfield Capital,No Change,4,100
+Westwood,Cut,2,15.384615384615385
+Westwood,No Change,9,69.23076923076923
+Westwood,Hike,2,15.384615384615385
+Wilbanks Smith & Thomas,Hike,2,100
+William Blair,Cut,25,54.347826086956516
+William Blair,No Change,13,28.26086956521739
+William Blair,Hike,8,17.391304347826086
+Williamsburg Investment Trust,No Change,1,100
+Wilmington Funds,Cut,14,73.68421052631578
+Wilmington Funds,No Change,5,26.31578947368421
+Wilshire Mutual Funds,Cut,3,25
+Wilshire Mutual Funds,No Change,4,33.33333333333333
+Wilshire Mutual Funds,Hike,5,41.66666666666667
+Wireless,No Change,1,100
+WOA,Cut,1,100
+WP Trust,Cut,1,20
+WP Trust,Hike,4,80
+YCG FUNDS,No Change,1,100
+Yorktown Funds,Cut,7,36.84210526315789
+Yorktown Funds,No Change,3,15.789473684210526
+Yorktown Funds,Hike,9,47.368421052631575
+Zacks Funds,Cut,1,20
+Zacks Funds,No Change,4,80
+Zeo,Cut,1,100
+Zevenbergen Capital Investments,No Change,4,100
+Ziegler,No Change,3,100

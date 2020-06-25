@@ -50,7 +50,7 @@ write_csv(Adjusted_Data, "~/Data/Fee_Data/Fee_Data/results/MS_Fee_Report_062520_
 
 ```
 
-Here I look how deep firms slashed expense ratios from 2018 to 2019. First, I removed rows with an expense ratio of zero in 2018 because I can’t calculate changes with that base. I also filter out expense ratios listed as NA (blank) for 2018 and 2019.
+Here I at look how deep firms slashed their expense ratios from 2018 to 2019. First, I removed rows with an expense ratio of zero in 2018 because I can’t calculate changes with that base. I also filter out expense ratios listed as NA (blank) for 2018 and 2019.
 
 Now I need to put the percent change in fees from 2018 to 2019 into buckets. I did that with the cut() function. Here’s a [link](<https://rpubs.com/pierrelafortune/cutdocumentation) for personal reference. 
 
@@ -81,12 +81,30 @@ Summary_Category <- Category %>%
   group_by(FeeChange) %>% 
   summarise(count = n())
 
-ggplot(data = Summary_Category, mapping = aes(x = FeeChange, y = count)) +
-  geom_bar(stat = "identity") +
-  geom_text(aes(label = count), vjust = 0)
+datatable(Summary_Category)
 ```
 
-Here I am looking at the fund families that with the lowest and highest overall fees across active products. I start by filtering out index funds and removing fees that are NA (blank) for 2019. Next I group the data by firm, sum their adjusted assets, sum their net assets and divide the total adjusted data by the total net asssets to calculate asset-weighted fees for each fund shop. I select the top and bottom 15 fund families based on the results.
+Here's a look at the above data. Full results saved as *shareclass_cuts_total.csv* in **Results** folder.
+
+```{r category_show, echo = FALSE}
+ggplot(data = Summary_Category, mapping = aes(x = FeeChange, y = count)) +
+  geom_bar(stat = "identity", fill = "black") +
+  geom_text(aes(label = count), vjust = 0, color = "blue")+
+  ggtitle("% change of share class fees from 2018 to 2019") +
+  xlab("% change") +
+  theme_classic()
+```
+
+Here I am looking at the fund families with the lowest and highest overall fees across active products. I start by filtering out index funds and removing fees that are NA (blank) for 2019
+
+Next steps:
+
+* Group the data by firm
+* Sum their adjusted assets
+* Sum their net assets
+* Divide the total adjusted assets by the total net asssets to calculate asset-weighted fees for each fund shop.
+
+I select the top and bottom 15 fund families based on the results.
 
 ```{r active_funds, Message=FALSE}
 ActiveFunds <- Adjusted_Data %>% 
@@ -113,19 +131,41 @@ Active_HighFees <- Active_Fees %>%
 Active_LowFees <- Active_Fees %>% 
   arrange(Fee_Wted) %>% 
   top_n(-15, Fee_Wted)
-
-ggplot(data = Active_HighFees, mapping = aes(x = reorder(Firm.Name, Fee_Wted), y = Fee_Wted)) +
-  geom_bar(stat="identity") +
-  coord_flip() + 
-  geom_text(aes(label = round(Fee_Wted,2)), hjust = 0)
-
-ggplot(data = Active_LowFees, mapping = aes(x = reorder(Firm.Name, -Fee_Wted), y = Fee_Wted)) +
-  geom_bar(stat="identity") +
-  coord_flip() + 
-  geom_text(aes(label = round(Fee_Wted,2)), hjust = 0)
 ```
 
-Here I am looking at the fund families that with the lowest and highest overall fees across passive products. I start by filtering out non-index funds and removing fees that are NA (blank) for 2019. Next I group the data by firm, sum their adjusted assets, sum their net assets and divide the total adjusted data by the total net asssets to calculate asset-weighted fees for each fund shop. I select the top and bottom 15 fund families based on the results.
+Here's a look at some of the above data. Full results saved as *fees_activefunds_firm.csv* in **Results** folder.
+
+```{r active_high_show, echo = FALSE}
+
+ggplot(data = Active_HighFees, mapping = aes(x = reorder(Firm.Name, Fee_Wted), y = Fee_Wted)) +
+  geom_bar(stat="identity", fill = "black") +
+  coord_flip() + 
+  geom_text(aes(label = round(Fee_Wted,2)), hjust = 0) +
+  ggtitle("Funds shops with the highest fees across active shareclasses") +
+  ylab("2019 Asset Weighted Fee") +
+  xlab("Fund Family") +
+  theme_classic()
+
+ggplot(data = Active_LowFees, mapping = aes(x = reorder(Firm.Name, -Fee_Wted), y = Fee_Wted)) +
+  geom_bar(stat="identity", fill = "black") +
+  coord_flip() + 
+  geom_text(aes(label = round(Fee_Wted,2)), hjust = 0) +
+  ggtitle("Funds shops with the lowest fees across active shareclasses") +
+  ylab("2019 Asset Weighted Fee") +
+  xlab("Fund Family") +
+  theme_classic()
+
+```
+
+Here I am looking at the fund families that with the lowest and highest overall fees across passive products. I start by filtering out non-index funds and removing fees that are NA (blank) for 2019.
+
+Next steps:
+* Group the data by firm
+* Sum their adjusted assets
+* Sum their net assets
+* Divide the total adjusted assets by the total net asssets to calculate asset-weighted fees for each fund shop.
+
+I select the top and bottom 15 fund families based on the results.
 
 ```{r passive_funds, Message=FALSE}
 PassiveFunds <- Adjusted_Data %>% 
@@ -153,19 +193,35 @@ Passive_HighFees <- Passive_Fees %>%
 Passive_LowFees <- Passive_Fees %>% 
   arrange(Fee_Wted) %>% 
   top_n(-15)
-
-ggplot(data = Passive_HighFees, mapping = aes(x = reorder(Firm.Name, -Fee_Wted), y = Fee_Wted)) +
-  geom_bar(stat="identity") +
-  coord_flip() + 
-  geom_text(aes(label = round(Fee_Wted,2)), hjust = 0)
-
-ggplot(data = Passive_LowFees, mapping = aes(x = reorder(Firm.Name, -Fee_Wted), y = Fee_Wted)) +
-  geom_bar(stat="identity") +
-  coord_flip() + 
-  geom_text(aes(label = round(Fee_Wted,2)), hjust = 0)
 ```
 
-Here I am looking at how many share classes had fees that were cut and hiked as well as saw no change. I start by filtering out fees that are NA (blank) for 2019 and 2018. I also remove fees with a zero expense ratio for 2018 because we can’t calculate change with that base. Next I create a category (FeeChange) that puts the percent changes (continous) in buckets (categorical). After that I just count the buckets.
+Here's a look at some of the above data. Full results saved as *fees_passivefunds_firm.csv* in **Results** folder.
+
+```{r passive_high_show, echo = FALSE}
+ggplot(data = Passive_HighFees, mapping = aes(x = reorder(Firm.Name, -Fee_Wted), y = Fee_Wted)) +
+  geom_bar(stat="identity", fill = "black") +
+  coord_flip() + 
+  geom_text(aes(label = round(Fee_Wted,2)), hjust = 0) +
+  ggtitle("Funds shops with the highest fees across active shareclasses") +
+  ylab("2019 Asset Weighted Fee") +
+  xlab("Fund Family") +
+  theme_classic()
+
+ggplot(data = Passive_LowFees, mapping = aes(x = reorder(Firm.Name, -Fee_Wted), y = Fee_Wted)) +
+  geom_bar(stat="identity", fill = "black") +
+  coord_flip() + 
+  geom_text(aes(label = round(Fee_Wted,2)), hjust = 0)+
+  ggtitle("Funds shops with the lowest fees across active shareclasses") +
+  ylab("2019 Asset Weighted Fee") +
+  xlab("Fund Family") +
+  theme_classic()
+```
+
+Here I am looking at how many share classes had fees that were cut and hiked or saw no change.
+
+I start by filtering out fees that are NA (blank) for 2019 and 2018. I also remove fees with a zero expense ratio for 2018 because we can’t calculate change with that base. 
+
+Next I create a category (FeeChange) that puts the percent changes (continous) in buckets (categorical). After that I just count the buckets.
 
 ```{r shareclass, Message=FALSE}
 Shareclass <- Adjusted_Data %>% 
@@ -190,12 +246,22 @@ Summary_Shareclass <- Shareclass %>%
   group_by(Firm.Name,
            FeeChange) %>% 
   summarise(count = n())
-
-ggplot(data = Summary_Shareclass, mapping = aes(x = FeeChange, y = count)) +
-  geom_bar(stat = "identity")
 ```
 
-Here I am looking at how many Passive share classes had fees that were cut and hiked as well as saw no change. I start by filtering out non-index funds and fees that are NA (blank) for 2019 and 2018. I also remove fees with a zero expense ratio for 2018 because we can’t calculate change with that base. Next I create a category (FeeChange) that puts the percent changes (continous) in buckets (categorical). After that I just count the buckets.
+Here's a look at some of the above data. Full results saved as *shareclass_fee_changes.csv* in **Results** folder.
+
+```{r shareclass_show, echo = FALSE}
+ggplot(data = Summary_Shareclass, mapping = aes(x = FeeChange, y = count)) +
+  geom_bar(stat = "identity", fill = "black")+
+  ggtitle("Fee changes among share classes (active & passive)") +
+  ylab("count") +
+  xlab("Share Classes") +
+  theme_classic()
+```
+
+Here I am looking at how many Passive share classes had fees that were cut and hiked or saw no change. I start by filtering out non-index funds and fees that are NA (blank) for 2019 and 2018. I also remove fees with a zero expense ratio for 2018 because we can’t calculate change with that base.
+
+Next I created a category (FeeChange) that puts the percent changes (continous) in buckets (categorical). After that I just count the buckets.
 
 ```{r passive_shareclass, Message=FALSE}
 Passive_Shareclass <- Adjusted_Data %>% 
@@ -224,19 +290,29 @@ Passive_Summary_Shareclass <- Passive_Shareclass %>%
     pct = count/sum(count)*100)
 
 write_csv(Passive_Summary_Shareclass, "~/Data/Fee_Data/Fee_Data/results/shareclass_changes_passivefunds.csv")
+```
 
+Here's a look at some of the above data. Full results saved as *shareclass_changes_passivefunds.csv* in **Results** folder.
+
+```{r passive_shareclass_show, echo = FALSE}
 Passive_Summary_Shareclass %>% 
   filter(FeeChange == "Cut") %>% 
   arrange(desc(count)) %>% 
   ungroup() %>% 
   top_n(15, count) %>% 
 ggplot(mapping = aes(x = reorder(Firm.Name, count), y = count)) +
-  geom_bar(stat = "identity") +
-  coord_flip() +
-  geom_text(aes(label = count), vjust = 0)
+  geom_bar(stat = "identity", fill = "black") +
+  coord_flip()+
+  ggtitle("Fee changes among share classes (passive)") +
+  geom_text(aes(label = count), hjust = 0)  +
+  ylab("Count") +
+  xlab("Fun Family") +
+  theme_classic()
 ```
 
-tk
+Here I am looking at how many active share classes had fees that were cut and hiked as well as saw no change. I start by filtering out non-index funds and fees that are NA (blank) for 2019 and 2018. I also remove fees with a zero expense ratio for 2018 because we can’t calculate change with that base.
+
+Next I create a category (FeeChange) that puts the percent changes (continous) in buckets (categorical). After that I just count the buckets.
 
 ```{r active_shareclass, Message = FALSE}
 
@@ -245,7 +321,7 @@ Active_Shareclass <- Adjusted_Data %>%
     Annual.Report..Net.Expense..Ratio..Year2018 != 0 &
       !is.na(Annual.Report..Net.Expense..Ratio..Year2018) &
       !is.na(Annual.Report..Net.Expense..Ratio..Year2019) &
-     Index..Fund == "Yes"
+     Index..Fund == "No"
   ) %>% 
   mutate(
     FeeChange = 
@@ -266,16 +342,23 @@ Active_Summary_Shareclass <- Active_Shareclass %>%
     pct = count/sum(count)*100)
 
 write_csv(Active_Summary_Shareclass, "shareclass_changes_activefunds.csv")
+```
 
+Here's a look at some of the above data. Full results saved as *shareclass_changes_activefunds.csv* in **Results** folder.
 
+```{r active_shareclass_show, echo = FALSE}
 Active_Summary_Shareclass %>% 
   filter(FeeChange == "Cut") %>% 
   arrange(desc(count)) %>% 
   ungroup() %>% 
   top_n(15, count) %>% 
 ggplot(mapping = aes(x = reorder(Firm.Name, count), y = count)) +
-  geom_bar(stat = "identity") +
-  coord_flip() +
-  geom_text(aes(label = count), vjust = 0)
+  geom_bar(stat = "identity", fill = "black") +
+  coord_flip()+
+  ggtitle("Fee changes among share classes (active)") +
+  geom_text(aes(label = count), hjust = 0)  +
+  ylab("Count") +
+  xlab("Fun Family") +
+  theme_classic()
 
 ```
