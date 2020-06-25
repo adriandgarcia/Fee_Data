@@ -182,6 +182,8 @@ ggplot(data = Passive_LowFees, mapping = aes(x = reorder(Firm.Name, -Fee_Wted), 
   xlab("Fund Family") +
   theme_classic()
 ```
+
+
 ## Fee changes among share classes (active & passive)
 
 Here I am looking at how many share classes had fees that were cut and hiked or saw no change.
