@@ -89,7 +89,8 @@ Here's a look at the above data. Full results saved as *shareclass_cuts_total.cs
 ```{r category_show, echo = FALSE}
 ggplot(data = Summary_Category, mapping = aes(x = FeeChange, y = count)) +
   geom_bar(stat = "identity", fill = "black") +
-  geom_text(aes(label = count), vjust = 0, color = "blue")+
+  scale_y_continuous(limits = c(0, 10000)) +
+  geom_text(aes(label = count), vjust = -1)+
   ggtitle("% change of share class fees from 2018 to 2019") +
   xlab("% change") +
   theme_classic()
@@ -140,7 +141,8 @@ Here's a look at some of the above data. Full results saved as *fees_activefunds
 ggplot(data = Active_HighFees, mapping = aes(x = reorder(Firm.Name, Fee_Wted), y = Fee_Wted)) +
   geom_bar(stat="identity", fill = "black") +
   coord_flip() + 
-  geom_text(aes(label = round(Fee_Wted,2)), hjust = 0) +
+  scale_y_continuous(limits = c(0, 6)) +
+  geom_text(aes(label = round(Fee_Wted,2)), hjust = -.5) +
   ggtitle("Funds shops with the highest fees across active shareclasses") +
   ylab("2019 Asset Weighted Fee") +
   xlab("Fund Family") +
@@ -148,8 +150,9 @@ ggplot(data = Active_HighFees, mapping = aes(x = reorder(Firm.Name, Fee_Wted), y
 
 ggplot(data = Active_LowFees, mapping = aes(x = reorder(Firm.Name, -Fee_Wted), y = Fee_Wted)) +
   geom_bar(stat="identity", fill = "black") +
-  coord_flip() + 
-  geom_text(aes(label = round(Fee_Wted,2)), hjust = 0) +
+  coord_flip() +
+  scale_y_continuous(limits = c(0, 5)) +
+  geom_text(aes(label = round(Fee_Wted,2)), hjust = -.5) +
   ggtitle("Funds shops with the lowest fees across active shareclasses") +
   ylab("2019 Asset Weighted Fee") +
   xlab("Fund Family") +
@@ -201,7 +204,8 @@ Here's a look at some of the above data. Full results saved as *fees_passivefund
 ggplot(data = Passive_HighFees, mapping = aes(x = reorder(Firm.Name, -Fee_Wted), y = Fee_Wted)) +
   geom_bar(stat="identity", fill = "black") +
   coord_flip() + 
-  geom_text(aes(label = round(Fee_Wted,2)), hjust = 0) +
+  scale_y_continuous(limits = c(0, 5)) +
+  geom_text(aes(label = round(Fee_Wted,2)), hjust = -.5) +
   ggtitle("Funds shops with the highest fees across active shareclasses") +
   ylab("2019 Asset Weighted Fee") +
   xlab("Fund Family") +
@@ -209,8 +213,9 @@ ggplot(data = Passive_HighFees, mapping = aes(x = reorder(Firm.Name, -Fee_Wted),
 
 ggplot(data = Passive_LowFees, mapping = aes(x = reorder(Firm.Name, -Fee_Wted), y = Fee_Wted)) +
   geom_bar(stat="identity", fill = "black") +
-  coord_flip() + 
-  geom_text(aes(label = round(Fee_Wted,2)), hjust = 0)+
+  coord_flip() +
+  scale_y_continuous(limits = c(0, 5)) +
+  geom_text(aes(label = round(Fee_Wted,2)), hjust = -.5)+
   ggtitle("Funds shops with the lowest fees across active shareclasses") +
   ylab("2019 Asset Weighted Fee") +
   xlab("Fund Family") +
@@ -252,7 +257,8 @@ Here's a look at some of the above data. Full results saved as *shareclass_fee_c
 
 ```{r shareclass_show, echo = FALSE}
 ggplot(data = Summary_Shareclass, mapping = aes(x = FeeChange, y = count)) +
-  geom_bar(stat = "identity", fill = "black")+
+  geom_bar(stat = "identity", fill = "black") +
+  scale_y_continuous(limits = c(0, 10000)) +
   ggtitle("Fee changes among share classes (active & passive)") +
   ylab("count") +
   xlab("Share Classes") +
@@ -302,11 +308,12 @@ Passive_Summary_Shareclass %>%
   top_n(15, count) %>% 
 ggplot(mapping = aes(x = reorder(Firm.Name, count), y = count)) +
   geom_bar(stat = "identity", fill = "black") +
-  coord_flip()+
+  coord_flip() +
+  scale_y_continuous(limits = c(0, 20)) +
   ggtitle("Fee changes among share classes (passive)") +
-  geom_text(aes(label = count), hjust = 0)  +
+  geom_text(aes(label = count), hjust = -.5)  +
   ylab("Count") +
-  xlab("Fun Family") +
+  xlab("Fund Family") +
   theme_classic()
 ```
 
@@ -341,7 +348,7 @@ Active_Summary_Shareclass <- Active_Shareclass %>%
   mutate(
     pct = count/sum(count)*100)
 
-write_csv(Active_Summary_Shareclass, "shareclass_changes_activefunds.csv")
+write_csv(Active_Summary_Shareclass, "~/Data/Fee_Data/Fee_Data/results/shareclass_changes_activefunds.csv")
 ```
 
 Here's a look at some of the above data. Full results saved as *shareclass_changes_activefunds.csv* in **Results** folder.
@@ -354,11 +361,12 @@ Active_Summary_Shareclass %>%
   top_n(15, count) %>% 
 ggplot(mapping = aes(x = reorder(Firm.Name, count), y = count)) +
   geom_bar(stat = "identity", fill = "black") +
-  coord_flip()+
+  coord_flip() +
+  scale_y_continuous(limits = c(0, 400)) +
   ggtitle("Fee changes among share classes (active)") +
-  geom_text(aes(label = count), hjust = 0)  +
+  geom_text(aes(label = count), hjust = -.5)  +
   ylab("Count") +
-  xlab("Fun Family") +
+  xlab("Fund Family") +
   theme_classic()
 
 ```
