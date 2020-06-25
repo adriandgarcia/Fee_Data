@@ -10,6 +10,8 @@ date: "June 2020"
 output: html_document
 ---
 
+## Getting Started
+
 ```{r setup, message = FALSE}
 library(tidyverse) #For Data Analysis
 library(lubridate) #For working with dates
@@ -49,6 +51,8 @@ Adjusted_Data <- Full %>%
 write_csv(Adjusted_Data, "~/Data/Fee_Data/Fee_Data/results/MS_Fee_Report_062520_ag.csv")
 
 ```
+
+## % change of share class fees from 2018 to 2019
 
 Here I at look how deep firms slashed their expense ratios from 2018 to 2019. First, I removed rows with an expense ratio of zero in 2018 because I can’t calculate changes with that base. I also filter out expense ratios listed as NA (blank) for 2018 and 2019.
 
@@ -90,11 +94,14 @@ Here's a look at the above data. Full results saved as *shareclass_cuts_total.cs
 ggplot(data = Summary_Category, mapping = aes(x = FeeChange, y = count)) +
   geom_bar(stat = "identity", fill = "black") +
   scale_y_continuous(limits = c(0, 10000)) +
-  geom_text(aes(label = count), vjust = -1)+
+  geom_text(aes(label = count), vjust = -.50)+
   ggtitle("% change of share class fees from 2018 to 2019") +
   xlab("% change") +
   theme_classic()
 ```
+
+## Fund families with the lowest/highes fees across active products
+
 
 Here I am looking at the fund families with the lowest and highest overall fees across active products. I start by filtering out index funds and removing fees that are NA (blank) for 2019
 
@@ -159,6 +166,8 @@ ggplot(data = Active_LowFees, mapping = aes(x = reorder(Firm.Name, -Fee_Wted), y
   theme_classic()
 
 ```
+## Fund families with the lowest/highes fees across passive products
+
 
 Here I am looking at the fund families that with the lowest and highest overall fees across passive products. I start by filtering out non-index funds and removing fees that are NA (blank) for 2019.
 
@@ -221,6 +230,7 @@ ggplot(data = Passive_LowFees, mapping = aes(x = reorder(Firm.Name, -Fee_Wted), 
   xlab("Fund Family") +
   theme_classic()
 ```
+## Fee changes among share classes (active & passive)
 
 Here I am looking at how many share classes had fees that were cut and hiked or saw no change.
 
@@ -264,6 +274,9 @@ ggplot(data = Summary_Shareclass, mapping = aes(x = FeeChange, y = count)) +
   xlab("Share Classes") +
   theme_classic()
 ```
+
+## Fee changes among passive share classes
+
 
 Here I am looking at how many Passive share classes had fees that were cut and hiked or saw no change. I start by filtering out non-index funds and fees that are NA (blank) for 2019 and 2018. I also remove fees with a zero expense ratio for 2018 because we can’t calculate change with that base.
 
@@ -316,6 +329,9 @@ ggplot(mapping = aes(x = reorder(Firm.Name, count), y = count)) +
   xlab("Fund Family") +
   theme_classic()
 ```
+
+## Fee changes among active share classes
+
 
 Here I am looking at how many active share classes had fees that were cut and hiked as well as saw no change. I start by filtering out non-index funds and fees that are NA (blank) for 2019 and 2018. I also remove fees with a zero expense ratio for 2018 because we can’t calculate change with that base.
 
