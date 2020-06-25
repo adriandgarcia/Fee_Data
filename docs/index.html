@@ -372,11 +372,11 @@ summary {
 <pre class="r"><code>library(tidyverse) #For Data Analysis
 library(lubridate) #For working with dates
 library(DT) #For visualizing tables</code></pre>
-<p>First, I pull in the data from Morningstar Direct (combined using “Combine_Files.r”). There are 25,616 rows and 88 columns. Data was pulled from Morningstar Direct on June 25, 2020.</p>
+<p>First, I pulled in the data from Morningstar Direct. (I combined it using “Combine_Files.r”). There were 25,616 rows and 88 columns. Data was pulled from Morningstar Direct on June 25, 2020.</p>
 <pre class="r"><code>Full &lt;- read_csv(&quot;MS_Fee_Report_062520_Full.csv&quot;,
                  guess_max = 25000)</code></pre>
-<p>I’m making the following adjustment to the data:</p>
-<p>-Replaces spaces in the column names with periods. -Calculate the average assets for 2017, 2018 and 2019. -Multipy the annual average asset figures by the expense ratio (to use later for asset-weighted calculations) -Calculate the percent change in net expense ratios from 2017 to 2018 and 2018 to 2019.</p>
+<p>I’m made the following adjustment to the data:</p>
+<p>-Replaced spaces in the column names with periods. -Calculated the average assets for 2017, 2018 and 2019. -Multiplied the annual average asset figures by the expense ratio (to use later for asset-weighted calculations) -Calculated the percent change in net expense ratios from 2017 to 2018 and 2018 to 2019.</p>
 <pre class="r"><code>Adjusted_Data &lt;- Full %&gt;% 
   rename_all(make.names) %&gt;% 
   mutate(Net_Asst_2017_AVG = rowMeans(.[,53:64], na.rm = TRUE),
@@ -388,9 +388,9 @@ library(DT) #For visualizing tables</code></pre>
          Pct_Change_2017_2018 = (Annual.Report..Net.Expense..Ratio..Year2018 - Annual.Report..Net.Expense..Ratio..Year2017)/Annual.Report..Net.Expense..Ratio..Year2017 *100,
          Pct_Change_2018_2019 = (Annual.Report..Net.Expense..Ratio..Year2019 - Annual.Report..Net.Expense..Ratio..Year2018)/Annual.Report..Net.Expense..Ratio..Year2018 *100)
   
-write_csv(Adjusted_Data, &quot;MS_Fee_Report_062520_ag.csv&quot;)</code></pre>
-<p>Here I want to look how deep firms slashed pay ratios from 2018 to 2019. First, remove rows with an expense ratio of zero in 2018 because I can’t calculate changes with that base. I also filter out expense ratios listed as NA (blank) for 2018 and 2019.</p>
-<p>Now I need to put the percent change in fees from 2018 to 2019 into buckets. I did that with the cut() function. Here’s a for personal reference<a href="https://rpubs.com/pierrelafortune/cutdocumentation" class="uri">https://rpubs.com/pierrelafortune/cutdocumentation</a>.</p>
+#write_csv(Adjusted_Data, &quot;~/Data/Fee_Data/Fee_Data/results/MS_Fee_Report_062520_ag.csv&quot;)</code></pre>
+<p>Here I look how deep firms slashed expense ratios from 2018 to 2019. First, I remove rows with an expense ratio of zero in 2018 because I can’t calculate changes with that base. I also filter out expense ratios listed as NA (blank) for 2018 and 2019.</p>
+<p>Now I need to put the percent change in fees from 2018 to 2019 into buckets. I did that with the cut() function. Here’s a link for personal reference: <a href="https://rpubs.com/pierrelafortune/cutdocumentation" class="uri">https://rpubs.com/pierrelafortune/cutdocumentation</a>.</p>
 <pre class="r"><code>Category &lt;- Adjusted_Data %&gt;% 
   select(
     1:20,
@@ -411,7 +411,7 @@ write_csv(Adjusted_Data, &quot;MS_Fee_Report_062520_ag.csv&quot;)</code></pre>
       )
   )
 
-write_csv(Category,&quot;shareclass_cuts_total.csv&quot;)
+#write_csv(Category,&quot;~/Data/Fee_Data/Fee_Data/results/shareclass_cuts_total.csv&quot;)
 
 Summary_Category &lt;- Category %&gt;% 
   group_by(FeeChange) %&gt;% 
@@ -437,7 +437,7 @@ Active_Fees &lt;- ActiveFunds %&gt;%
     Fee_Wted = Sum_Assts_Wted/Sum_Assets
   )
 
-write_csv(Active_Fees, &quot;fees_activefunds_firm.csv&quot;)
+#write_csv(Active_Fees, &quot;~/Data/Fee_Data/Fee_Data/results/fees_activefunds_firm.csv&quot;)
 
 Active_HighFees &lt;- Active_Fees %&gt;% 
   arrange(desc(Fee_Wted)) %&gt;% 
@@ -473,7 +473,7 @@ Passive_Fees &lt;- PassiveFunds %&gt;%
     Fee_Wted = Sum_Assts_Wted/Sum_Assets
   )
 
-write_csv(Passive_Fees, &quot;fees_passivefunds_firm.csv&quot;)
+#write_csv(Passive_Fees, &quot;~/Data/Fee_Data/Fee_Data/results/fees_passivefunds_firm.csv&quot;)
 
 
 Passive_HighFees &lt;- Passive_Fees %&gt;% 
@@ -511,7 +511,7 @@ Passive_HighFees &lt;- Passive_Fees %&gt;%
       )
   )
 
-write_csv(Shareclass, &quot;shareclass_fee_changes.csv&quot;)
+#write_csv(Shareclass, &quot;~/Data/Fee_Data/Fee_Data/results/shareclass_fee_changes.csv&quot;)
 
 Summary_Shareclass &lt;- Shareclass %&gt;% 
   group_by(Firm.Name,
@@ -547,7 +547,7 @@ Passive_Summary_Shareclass &lt;- Passive_Shareclass %&gt;%
   mutate(
     pct = count/sum(count)*100)
 
-write_csv(Passive_Summary_Shareclass, &quot;shareclass_changes_passivefunds.csv&quot;)
+#write_csv(Passive_Summary_Shareclass, &quot;~/Data/Fee_Data/Fee_Data/results/shareclass_changes_passivefunds.csv&quot;)
 
 Passive_Summary_Shareclass %&gt;% 
   filter(FeeChange == &quot;Cut&quot;) %&gt;% 

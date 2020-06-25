@@ -16,7 +16,7 @@ library(lubridate) #For working with dates
 library(DT) #For visualizing tables
 ```
 
-First, I pull in the data from Morningstar Direct (combined using “Combine_Files.r”). There are 25,616 rows and 88 columns. Data was pulled from Morningstar Direct on June 25, 2020.
+First, I pulled in the data from Morningstar Direct. (I combined it using “Combine_Files.r”). There were 25,616 rows and 88 columns. Data was pulled from Morningstar Direct on June 25, 2020.
 
 
 ```{r load, message = FALSE}
@@ -26,12 +26,12 @@ Full <- read_csv("MS_Fee_Report_062520_Full.csv",
 
 ```
 
-I’m making the following adjustment to the data:
+I’m made the following adjustment to the data:
 
--Replaces spaces in the column names with periods.
--Calculate the average assets for 2017, 2018 and 2019.
--Multipy the annual average asset figures by the expense ratio (to use later for asset-weighted calculations)
--Calculate the percent change in net expense ratios from 2017 to 2018 and 2018 to 2019. 
+-Replaced spaces in the column names with periods.
+-Calculated the average assets for 2017, 2018 and 2019.
+-Multiplied the annual average asset figures by the expense ratio (to use later for asset-weighted calculations)
+-Calculated the percent change in net expense ratios from 2017 to 2018 and 2018 to 2019. 
 
 ```{r adjustment, Message=FALSE}
 
@@ -46,13 +46,13 @@ Adjusted_Data <- Full %>%
          Pct_Change_2017_2018 = (Annual.Report..Net.Expense..Ratio..Year2018 - Annual.Report..Net.Expense..Ratio..Year2017)/Annual.Report..Net.Expense..Ratio..Year2017 *100,
          Pct_Change_2018_2019 = (Annual.Report..Net.Expense..Ratio..Year2019 - Annual.Report..Net.Expense..Ratio..Year2018)/Annual.Report..Net.Expense..Ratio..Year2018 *100)
   
-write_csv(Adjusted_Data, "MS_Fee_Report_062520_ag.csv")
+#write_csv(Adjusted_Data, "~/Data/Fee_Data/Fee_Data/results/MS_Fee_Report_062520_ag.csv")
 
 ```
 
-Here I want to look how deep firms slashed pay ratios from 2018 to 2019. First, remove rows with an expense ratio of zero in 2018 because I can’t calculate changes with that base. I also filter out expense ratios listed as NA (blank) for 2018 and 2019.
+Here I look how deep firms slashed expense ratios from 2018 to 2019. First, I remove rows with an expense ratio of zero in 2018 because I can’t calculate changes with that base. I also filter out expense ratios listed as NA (blank) for 2018 and 2019.
 
-Now I need to put the percent change in fees from 2018 to 2019 into buckets. I did that with the cut() function. Here’s a for personal reference<https://rpubs.com/pierrelafortune/cutdocumentation>.
+Now I need to put the percent change in fees from 2018 to 2019 into buckets. I did that with the cut() function. Here’s a link for personal reference: <https://rpubs.com/pierrelafortune/cutdocumentation>.
 
 ```{r category, Message=FALSE}
 Category <- Adjusted_Data %>% 
@@ -75,7 +75,7 @@ Category <- Adjusted_Data %>%
       )
   )
 
-write_csv(Category,"shareclass_cuts_total.csv")
+#write_csv(Category,"~/Data/Fee_Data/Fee_Data/results/shareclass_cuts_total.csv")
 
 Summary_Category <- Category %>% 
   group_by(FeeChange) %>% 
@@ -104,7 +104,7 @@ Active_Fees <- ActiveFunds %>%
     Fee_Wted = Sum_Assts_Wted/Sum_Assets
   )
 
-write_csv(Active_Fees, "fees_activefunds_firm.csv")
+#write_csv(Active_Fees, "~/Data/Fee_Data/Fee_Data/results/fees_activefunds_firm.csv")
 
 Active_HighFees <- Active_Fees %>% 
   arrange(desc(Fee_Wted)) %>% 
@@ -143,7 +143,7 @@ Passive_Fees <- PassiveFunds %>%
     Fee_Wted = Sum_Assts_Wted/Sum_Assets
   )
 
-write_csv(Passive_Fees, "fees_passivefunds_firm.csv")
+#write_csv(Passive_Fees, "~/Data/Fee_Data/Fee_Data/results/fees_passivefunds_firm.csv")
 
 
 Passive_HighFees <- Passive_Fees %>% 
@@ -184,7 +184,7 @@ Shareclass <- Adjusted_Data %>%
       )
   )
 
-write_csv(Shareclass, "shareclass_fee_changes.csv")
+#write_csv(Shareclass, "~/Data/Fee_Data/Fee_Data/results/shareclass_fee_changes.csv")
 
 Summary_Shareclass <- Shareclass %>% 
   group_by(Firm.Name,
@@ -223,7 +223,7 @@ Passive_Summary_Shareclass <- Passive_Shareclass %>%
   mutate(
     pct = count/sum(count)*100)
 
-write_csv(Passive_Summary_Shareclass, "shareclass_changes_passivefunds.csv")
+#write_csv(Passive_Summary_Shareclass, "~/Data/Fee_Data/Fee_Data/results/shareclass_changes_passivefunds.csv")
 
 Passive_Summary_Shareclass %>% 
   filter(FeeChange == "Cut") %>% 
