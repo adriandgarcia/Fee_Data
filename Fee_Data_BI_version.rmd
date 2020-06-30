@@ -37,25 +37,18 @@ I’m made the following adjustments to the data:
 
 ```{r adjustment, Message=FALSE}
 
-Adjusted_Data <- Full %>%
-  rename_all(make.names) %>%
-  mutate(
-    Net_Asst_2017_AVG = rowMeans(.[, 53:64], na.rm = TRUE),
-    Net_Asst_2018_AVG = rowMeans(.[, 65:76], na.rm = TRUE),
-    Net_Asst_2019_AVG = rowMeans(.[, 77:88], na.rm = TRUE),
-    Asst_By_Fee_2017 = Net_Asst_2017_AVG * Annual.Report..Net.Expense..Ratio..Year2017,
-    Asst_By_Fee_2018 = Net_Asst_2018_AVG * Annual.Report..Net.Expense..Ratio..Year2018,
-    Asst_By_Fee_2019 = Net_Asst_2019_AVG * Annual.Report..Net.Expense..Ratio..Year2019,
-    Pct_Change_2017_2018 = (
-      Annual.Report..Net.Expense..Ratio..Year2018 - Annual.Report..Net.Expense..Ratio..Year2017
-    ) / Annual.Report..Net.Expense..Ratio..Year2017 * 100,
-    Pct_Change_2018_2019 = (
-      Annual.Report..Net.Expense..Ratio..Year2019 - Annual.Report..Net.Expense..Ratio..Year2018
-    ) / Annual.Report..Net.Expense..Ratio..Year2018 * 100
-  )
-
-write_csv(Adjusted_Data,
-          "~/Data/Fee_Data/Fee_Data/results/MS_Fee_Report_062520_ag.csv")
+Adjusted_Data <- Full %>% 
+  rename_all(make.names) %>% 
+  mutate(Net_Asst_2017_AVG = rowMeans(.[,53:64], na.rm = TRUE),
+         Net_Asst_2018_AVG = rowMeans(.[,65:76], na.rm = TRUE),
+         Net_Asst_2019_AVG = rowMeans(.[,77:88], na.rm = TRUE),
+         Asst_By_Fee_2017 = Net_Asst_2017_AVG * Annual.Report..Net.Expense..Ratio..Year2017,
+         Asst_By_Fee_2018 = Net_Asst_2018_AVG * Annual.Report..Net.Expense..Ratio..Year2018,
+         Asst_By_Fee_2019 = Net_Asst_2019_AVG * Annual.Report..Net.Expense..Ratio..Year2019,
+         Pct_Change_2017_2018 = (Annual.Report..Net.Expense..Ratio..Year2018 - Annual.Report..Net.Expense..Ratio..Year2017)/Annual.Report..Net.Expense..Ratio..Year2017 *100,
+         Pct_Change_2018_2019 = (Annual.Report..Net.Expense..Ratio..Year2019 - Annual.Report..Net.Expense..Ratio..Year2018)/Annual.Report..Net.Expense..Ratio..Year2018 *100)
+  
+write_csv(Adjusted_Data, "~/Data/Fee_Data/Fee_Data/results/MS_Fee_Report_062520_ag.csv")
 
 ```
 
@@ -67,47 +60,46 @@ Here I am looking at the fund families with the lowest and highest overall fees 
 Next steps:
 
 * Group the data by firm
-* Count how many shareclasses each firm has
 * Sum their adjusted assets
 * Sum their net assets
 * Divide the total adjusted assets by the total net asssets to calculate asset-weighted fees for each fund shop.
 
-Filter:
-*Firms with at least 50 share classes
-*Firms with at least $25 billion in assets
-
 I select the top and bottom 15 fund families based on the results.
 
 ```{r active_funds, Message=FALSE}
-ActiveFunds <- Adjusted_Data %>%
+ActiveFunds <- Adjusted_Data %>% 
   filter(
     Net_Asst_2019_AVG != 0 &
-      Index..Fund != "Yes" &
-      !is.na(Annual.Report..Net.Expense..Ratio..Year2019)
+   Index..Fund != "Yes" &
+     !is.na(Annual.Report..Net.Expense..Ratio..Year2019)
   )
 
-Active_Fees <- ActiveFunds %>%
-  group_by(Firm.Name) %>%
+Active_Fees <- ActiveFunds %>% 
+  group_by(Firm.Name) %>% 
   summarise(
     Count = n(),
     Sum_Assts_Wted = sum(Asst_By_Fee_2019, na.rm = TRUE),
     Sum_Assets = sum(Net_Asst_2019_AVG, na.rm = TRUE),
-   Fee_Wted = Sum_Assts_Wted / Sum_Assets
-  ) %>%
-  filter(Count >= 50 &
-           Sum_Assets >= 2.5e+10
-         )
+    Fee_Wted = round(Sum_Assts_Wted/Sum_Assets,3)*100
+  ) %>% 
+  filter(
+    Count >=10 &
+    Sum_Assets >= 2.5e+10
+  )
 
-write_csv(Active_Fees,
-          "~/Data/Fee_Data/Fee_Data/results/fees_activefunds_firm.csv")
+#write_csv(Active_Fees, "~/Data/Fee_Data/Fee_Data/results/fees_activefunds_firm.csv")
 
-Active_HighFees <- Active_Fees %>%
-  arrange(desc(Fee_Wted)) %>%
+Active_HighFees <- Active_Fees %>% 
+  arrange(desc(Fee_Wted)) %>% 
   top_n(15, Fee_Wted)
 
-Active_LowFees <- Active_Fees %>%
-  arrange(Fee_Wted) %>%
+
+Active_LowFees <- Active_Fees %>% 
+  arrange(Fee_Wted) %>% 
   top_n(-15, Fee_Wted)
+
+write_csv(Active_HighFees, "high_fees_active.csv")
+write_csv(Active_LowFees, "low_fees_active.csv")
 ```
 
 Here's a look at some of the above data. Full results saved as *fees_activefunds_firm.csv* in **Results** folder.
@@ -115,20 +107,20 @@ Here's a look at some of the above data. Full results saved as *fees_activefunds
 ```{r active_high_show, echo = FALSE}
 
 ggplot(data = Active_HighFees, mapping = aes(x = reorder(Firm.Name, Fee_Wted), y = Fee_Wted)) +
-  geom_bar(stat = "identity", fill = "black") +
-  coord_flip() +
-  scale_y_continuous(limits = c(0, 5)) +
-  geom_text(aes(label = round(Fee_Wted, 2)), hjust = -.5) +
+  geom_bar(stat="identity", fill = "black") +
+  coord_flip() + 
+  scale_y_continuous(limits = c(0, 6)) +
+  geom_text(aes(label = round(Fee_Wted,2)), hjust = -.5) +
   ggtitle("Funds shops with the highest fees across active shareclasses") +
   ylab("2019 Asset Weighted Fee") +
   xlab("Fund Family") +
   theme_classic()
 
-ggplot(data = Active_LowFees, mapping = aes(x = reorder(Firm.Name,-Fee_Wted), y = Fee_Wted)) +
-  geom_bar(stat = "identity", fill = "black") +
+ggplot(data = Active_LowFees, mapping = aes(x = reorder(Firm.Name, -Fee_Wted), y = Fee_Wted)) +
+  geom_bar(stat="identity", fill = "black") +
   coord_flip() +
   scale_y_continuous(limits = c(0, 5)) +
-  geom_text(aes(label = round(Fee_Wted, 2)), hjust = -.5) +
+  geom_text(aes(label = round(Fee_Wted,2)), hjust = -.5) +
   ggtitle("Funds shops with the lowest fees across active shareclasses") +
   ylab("2019 Asset Weighted Fee") +
   xlab("Fund Family") +
@@ -146,63 +138,64 @@ Next steps:
 * Sum their net assets
 * Divide the total adjusted assets by the total net asssets to calculate asset-weighted fees for each fund shop.
 
-Filter:
-*Firms with at least 10 share classes
-*Firms with at least $1 in assets
-
 I select the top and bottom 15 fund families based on the results.
 
 ```{r passive_funds, Message=FALSE}
-PassiveFunds <- Adjusted_Data %>%
+PassiveFunds <- Adjusted_Data %>% 
   filter(
     Net_Asst_2019_AVG != 0 &
-      Index..Fund != "No" &
+   Index..Fund != "No" &
       !is.na(Annual.Report..Net.Expense..Ratio..Year2019)
   )
 
-Passive_Fees <- PassiveFunds %>%
-  group_by(Firm.Name) %>%
+Passive_Fees <- PassiveFunds %>% 
+  group_by(Firm.Name) %>% 
   summarise(
     Count = n(),
     Sum_Assts_Wted = sum(Asst_By_Fee_2019, na.rm = TRUE),
     Sum_Assets = sum(Net_Asst_2019_AVG, na.rm = TRUE),
-    Fee_Wted = Sum_Assts_Wted / Sum_Assets
+    Fee_Wted = round(Sum_Assts_Wted/Sum_Assets,3)*100
   ) %>% 
-  filter(Count >= 10 &
-           Sum_Assets > 0
-         )
+  filter(
+    Count >= 10 &
+    Sum_Assets >= 1e+10
+  )
 
-write_csv(Passive_Fees,
-          "~/Data/Fee_Data/Fee_Data/results/fees_passivefunds_firm.csv")
+#write_csv(Passive_Fees, "~/Data/Fee_Data/Fee_Data/results/fees_passivefunds_firm.csv")
 
 
-Passive_HighFees <- Passive_Fees %>%
-  arrange(desc(Fee_Wted)) %>%
+Passive_HighFees <- Passive_Fees %>% 
+  arrange(desc(Fee_Wted)) %>% 
   top_n(15)
 
-Passive_LowFees <- Passive_Fees %>%
-  arrange(Fee_Wted) %>%
+
+
+Passive_LowFees <- Passive_Fees %>% 
+  arrange(Fee_Wted) %>% 
   top_n(-15)
+
+write_csv(Passive_HighFees, "high_fees_passive.csv")
+write_csv(Passive_LowFees, "low_fees_passive.csv")
 ```
 
 Here's a look at some of the above data. Full results saved as *fees_passivefunds_firm.csv* in **Results** folder.
 
 ```{r passive_high_show, echo = FALSE}
-ggplot(data = Passive_HighFees, mapping = aes(x = reorder(Firm.Name,-Fee_Wted), y = Fee_Wted)) +
-  geom_bar(stat = "identity", fill = "black") +
-  coord_flip() +
-  scale_y_continuous(limits = c(0, 5)) +
-  geom_text(aes(label = round(Fee_Wted, 2)), hjust = -.5) +
+ggplot(data = Passive_HighFees, mapping = aes(x = reorder(Firm.Name, Fee_Wted), y = Fee_Wted)) +
+  geom_bar(stat="identity", fill = "black") +
+  coord_flip() + 
+  scale_y_continuous(limits = c(0, 60)) +
+  geom_text(aes(label = round(Fee_Wted,2)), hjust = -.5) +
   ggtitle("Funds shops with the highest fees across active shareclasses") +
   ylab("2019 Asset Weighted Fee") +
   xlab("Fund Family") +
   theme_classic()
 
-ggplot(data = Passive_LowFees, mapping = aes(x = reorder(Firm.Name,-Fee_Wted), y = Fee_Wted)) +
-  geom_bar(stat = "identity", fill = "black") +
+ggplot(data = Passive_LowFees, mapping = aes(x = reorder(Firm.Name, -Fee_Wted), y = Fee_Wted)) +
+  geom_bar(stat="identity", fill = "black") +
   coord_flip() +
-  scale_y_continuous(limits = c(0, 5)) +
-  geom_text(aes(label = round(Fee_Wted, 2)), hjust = -.5) +
+  scale_y_continuous(limits = c(0, 60)) +
+  geom_text(aes(label = round(Fee_Wted,2)), hjust = -.5)+
   ggtitle("Funds shops with the lowest fees across active shareclasses") +
   ylab("2019 Asset Weighted Fee") +
   xlab("Fund Family") +
@@ -219,37 +212,28 @@ I start by filtering out fees that are NA (blank) for 2019 and 2018. I also remo
 Next I create a category (FeeChange) that puts the percent changes (continous) in buckets (categorical). After that I just count the buckets.
 
 ```{r shareclass, Message=FALSE}
-Shareclass <- Adjusted_Data %>%
+Shareclass <- Adjusted_Data %>% 
   filter(
     Annual.Report..Net.Expense..Ratio..Year2018 != 0 &
       !is.na(Annual.Report..Net.Expense..Ratio..Year2018) &
       !is.na(Annual.Report..Net.Expense..Ratio..Year2019)
-  ) %>%
-  mutate(
-    FeeChange =
-      cut(
-        Pct_Change_2018_2019,
-        breaks = c(-Inf,-0.001, 0, Inf),
-        labels = c("Cut", "No Change", "Hike"),
-        include.lowest = TRUE,
-        right = TRUE)
-    )
-
-write_csv(Shareclass,
-          "~/Data/Fee_Data/Fee_Data/results/shareclass_fee_changes.csv"
-          )
-
-Summary_Shareclass <- Shareclass %>%
-  group_by(Firm.Name,
-           FeeChange,) %>%
-  summarise(count = n()
-            ) %>% 
-  group_by(Firm.Name
   ) %>% 
   mutate(
-    total_count = sum(count)
+    FeeChange = 
+      cut(Pct_Change_2018_2019,
+          breaks = c(-Inf,-0.001,0,Inf),
+          labels = c("Cut", "No Change", "Hike"),
+          include.lowest = TRUE,
+          right = TRUE
+      )
   )
 
+write_csv(Shareclass, "~/Data/Fee_Data/Fee_Data/results/shareclass_fee_changes.csv")
+
+Summary_Shareclass <- Shareclass %>% 
+  group_by(Firm.Name,
+           FeeChange) %>% 
+  summarise(count = n())
 ```
 
 Here's a look at some of the above data. Full results saved as *shareclass_fee_changes.csv* in **Results** folder.
@@ -257,11 +241,11 @@ Here's a look at some of the above data. Full results saved as *shareclass_fee_c
 ```{r shareclass_show, echo = FALSE}
 ggplot(data = Summary_Shareclass, mapping = aes(x = FeeChange, y = count)) +
   geom_bar(stat = "identity", fill = "black") +
+  scale_y_continuous(limits = c(0, 10000)) +
   ggtitle("Fee changes among share classes (active & passive)") +
   ylab("count") +
   xlab("Share Classes") +
   theme_classic()
-
 ```
 
 ## Fee changes among passive share classes
@@ -271,63 +255,48 @@ Here I am looking at how many Passive share classes had fees that were cut and h
 
 Next I created a category (FeeChange) that puts the percent changes (continous) in buckets (categorical). After that I just count the buckets.
 
-
-Filter:
-*Firms with at least 10 share classes
-*Firms with at least $1 in assets
-
 ```{r passive_shareclass, Message=FALSE}
-Passive_Shareclass <- Adjusted_Data %>%
+Passive_Shareclass <- Adjusted_Data %>% 
   filter(
     Annual.Report..Net.Expense..Ratio..Year2018 != 0 &
       !is.na(Annual.Report..Net.Expense..Ratio..Year2018) &
       !is.na(Annual.Report..Net.Expense..Ratio..Year2019) &
-      Index..Fund == "Yes"
-  ) %>%
-  mutate(
-    FeeChange =
-      cut(
-        Pct_Change_2018_2019,
-        breaks = c(-Inf, -0.001, 0, Inf),
-        labels = c("Cut", "No Change", "Hike"),
-        include.lowest = TRUE,
-        right = TRUE
-      )
-    )
-
-Passive_Summary_Shareclass <- Passive_Shareclass %>%
-  group_by(Firm.Name,
-           FeeChange) %>%
-  summarise(count = n(),
-    Sum_Assets = sum(Net_Asst_2019_AVG, na.rm = TRUE),
-    ) %>%
-  group_by(Firm.Name) %>%
-  mutate(
-    total_assets = sum(Sum_Assets),
-    assets_pct = Sum_Assets/total_assets * 100,
-    total_count = sum(count),
-    count_pct = count / total_count * 100
+     Index..Fund == "Yes"
   ) %>% 
-  filter(
-    total_count >= 10 &
-      total_assets > 0
-    )
-
-write_csv(
-  Passive_Summary_Shareclass,
-  "~/Data/Fee_Data/Fee_Data/results/shareclass_changes_passivefunds.csv"
+  mutate(
+    FeeChange = 
+      cut(Pct_Change_2018_2019,
+          breaks = c(-Inf,-0.001,0,Inf),
+          labels = c("Cut", "No Change", "Hike"),
+          include.lowest = TRUE,
+          right = TRUE
+      )
   )
+
+Passive_Summary_Shareclass <- Passive_Shareclass %>% 
+  group_by(Firm.Name,
+           FeeChange) %>% 
+  summarise(count = n()) %>% 
+  group_by(Firm.Name) %>% 
+  mutate(
+    pct = count/sum(count)*100)
+
+
+write_csv(Passive_Summary_Shareclass, "~/Data/Fee_Data/Fee_Data/results/shareclass_changes_passivefunds.csv")
+
+
+write_csv(Passive_Summary_Shareclass, "passive_category.csv")
 ```
 
 Here's a look at some of the above data. Full results saved as *shareclass_changes_passivefunds.csv* in **Results** folder.
 
 ```{r passive_shareclass_show, echo = FALSE}
-Passive_Summary_Shareclass %>%
-  filter(FeeChange == "Cut") %>%
-  arrange(desc(count)) %>%
-  ungroup() %>%
-  top_n(15, count) %>%
-  ggplot(mapping = aes(x = reorder(Firm.Name, count), y = count)) +
+Passive_Summary_Shareclass %>% 
+  filter(FeeChange == "Cut") %>% 
+  arrange(desc(count)) %>% 
+  ungroup() %>% 
+  top_n(15, count) %>% 
+ggplot(mapping = aes(x = reorder(Firm.Name, count), y = count)) +
   geom_bar(stat = "identity", fill = "black") +
   coord_flip() +
   scale_y_continuous(limits = c(0, 20)) +
@@ -336,7 +305,6 @@ Passive_Summary_Shareclass %>%
   ylab("Count") +
   xlab("Fund Family") +
   theme_classic()
-
 ```
 
 ## Fee changes among active share classes
@@ -346,63 +314,48 @@ Here I am looking at how many active share classes had fees that were cut and hi
 
 Next I create a category (FeeChange) that puts the percent changes (continous) in buckets (categorical). After that I just count the buckets.
 
-Filter:
-*Firms with at least 50 share classes
-*Firms with at least $25 billion in assets
-
 ```{r active_shareclass, Message = FALSE}
 
-
-Active_Shareclass <- Adjusted_Data %>%
+Active_Shareclass <- Adjusted_Data %>% 
   filter(
     Annual.Report..Net.Expense..Ratio..Year2018 != 0 &
       !is.na(Annual.Report..Net.Expense..Ratio..Year2018) &
       !is.na(Annual.Report..Net.Expense..Ratio..Year2019) &
-      Index..Fund == "No"
-  ) %>%
+     Index..Fund == "No"
+  ) %>% 
   mutate(
-    FeeChange =
-      cut(
-        Pct_Change_2018_2019,
-        breaks = c(-Inf,-0.001, 0, Inf),
-        labels = c("Cut", "No Change", "Hike"),
-        include.lowest = TRUE,
-        right = TRUE
+    FeeChange = 
+      cut(Pct_Change_2018_2019,
+          breaks = c(-Inf,-0.001,0,Inf),
+          labels = c("Cut", "No Change", "Hike"),
+          include.lowest = TRUE,
+          right = TRUE
       )
-    )
-
-Active_Summary_Shareclass <- Active_Shareclass %>%
-  group_by(Firm.Name,
-           FeeChange) %>%
-  summarise(count = n(),
-    Sum_Assets = sum(Net_Asst_2019_AVG, na.rm = TRUE)
-    ) %>%
-  group_by(Firm.Name) %>%
-  mutate(
-    total_assets = sum(Sum_Assets),
-    assets_pct = Sum_Assets / total_assets * 100,
-    total_count = sum(count),
-    count_pct = count / total_count * 100
-  ) %>%
-  filter(total_count >= 50 &
-           total_assets >= 2.5e+10
-         )
-
-write_csv(
-  Active_Summary_Shareclass,
-  "~/Data/Fee_Data/Fee_Data/results/shareclass_changes_activefunds.csv"
   )
+
+Active_Summary_Shareclass <- Active_Shareclass %>% 
+  group_by(Firm.Name,
+           FeeChange) %>% 
+  summarise(count = n()) %>% 
+  group_by(Firm.Name) %>% 
+  mutate(
+    pct = count/sum(count)*100)
+
+write_csv(Active_Summary_Shareclass, "~/Data/Fee_Data/Fee_Data/results/shareclass_changes_activefunds.csv")
+
+write_csv(Active_Summary_Shareclass, "active_category.csv")
+
 ```
 
 Here's a look at some of the above data. Full results saved as *shareclass_changes_activefunds.csv* in **Results** folder.
 
 ```{r active_shareclass_show, echo = FALSE}
-Active_Summary_Shareclass %>%
-  filter(FeeChange == "Cut") %>%
-  arrange(desc(count)) %>%
-  ungroup() %>%
-  top_n(15, count) %>%
-  ggplot(mapping = aes(x = reorder(Firm.Name, count), y = count)) +
+Active_Summary_Shareclass %>% 
+  filter(FeeChange == "Cut") %>% 
+  arrange(desc(count)) %>% 
+  ungroup() %>% 
+  top_n(15, count) %>% 
+ggplot(mapping = aes(x = reorder(Firm.Name, count), y = count)) +
   geom_bar(stat = "identity", fill = "black") +
   coord_flip() +
   scale_y_continuous(limits = c(0, 400)) +
@@ -421,30 +374,30 @@ Here I at look how deep firms slashed their expense ratios from 2018 to 2019. Fi
 Now I need to put the percent change in fees from 2018 to 2019 into buckets. I did that with the cut() function. Here’s a [link](https://rpubs.com/pierrelafortune/cutdocumentation) for personal reference. 
 
 ```{r category, Message=FALSE}
-Category <- Adjusted_Data %>%
-  select(1:20,
-         86:96) %>%
+Category <- Adjusted_Data %>% 
+  select(
+    1:20,
+    86:96
+  ) %>%
   filter(
     Annual.Report..Net.Expense..Ratio..Year2018 != 0 &
       !is.na(Annual.Report..Net.Expense..Ratio..Year2018) &
       !is.na(Annual.Report..Net.Expense..Ratio..Year2019)
-  ) %>%
+  ) %>% 
   mutate(
-    FeeChange =
-      cut(
-        Pct_Change_2018_2019,
-        breaks = c(-Inf, -50, -25, -10, -1, -0.01, 0, Inf),
-        labels = c("< -50", "-25 - -50", "-10 - -25", "-1 - 10", "0 - -1", "0", "> 0"),
-        include.lowest = TRUE,
-        right = TRUE
+    FeeChange = 
+      cut(Pct_Change_2018_2019,
+          breaks = c(-Inf,-50,-25,-10,-1,-0.01,0,Inf),
+          labels = c("< -50", "-25 - -50", "-10 - -25", "-1 - 10","0 - -1", "0", "> 0"),
+          include.lowest = TRUE,
+          right = TRUE
       )
   )
 
-write_csv(Category,
-          "~/Data/Fee_Data/Fee_Data/results/shareclass_cuts_total.csv")
+write_csv(Category,"~/Data/Fee_Data/Fee_Data/results/shareclass_cuts_total.csv")
 
-Summary_Category <- Category %>%
-  group_by(FeeChange) %>%
+Summary_Category <- Category %>% 
+  group_by(FeeChange) %>% 
   summarise(count = n())
 
 datatable(Summary_Category)
@@ -456,8 +409,62 @@ Here's a look at the above data. Full results saved as *shareclass_cuts_total.cs
 ggplot(data = Summary_Category, mapping = aes(x = FeeChange, y = count)) +
   geom_bar(stat = "identity", fill = "black") +
   scale_y_continuous(limits = c(0, 10000)) +
-  geom_text(aes(label = count), vjust = -.50) +
+  geom_text(aes(label = count), vjust = -.50)+
   ggtitle("% change of share class fees from 2018 to 2019") +
   xlab("% change") +
   theme_classic()
+```
+
+```{r Passive_category, Message=FALSE}
+Passive_Category <- Adjusted_Data %>% 
+  filter(
+    Index..Fund == "Yes" &
+    Annual.Report..Net.Expense..Ratio..Year2018 != 0 &
+      !is.na(Annual.Report..Net.Expense..Ratio..Year2018) &
+      !is.na(Annual.Report..Net.Expense..Ratio..Year2019)
+  ) %>% 
+  mutate(
+    FeeChange = 
+      cut(Pct_Change_2018_2019,
+          breaks = c(-Inf,-50,-25,-10,-1,-0.01,0,Inf),
+          labels = c("< -50", "-25 - -50", "-10 - -25", "-1 - 10","0 - -1", "0", "> 0"),
+          include.lowest = TRUE,
+          right = TRUE
+      )
+  )
+
+Summary_Passive_Category <- Passive_Category %>% 
+  group_by(FeeChange) %>% 
+  summarise(count = n())
+
+write_csv(Summary_Passive_Category, "passive_category.csv")
+
+datatable(Summary_Category)
+```
+
+```{r Active_category, Message=FALSE}
+Active_Category <- Adjusted_Data %>% 
+  filter(
+    Index..Fund == "No" &
+    Annual.Report..Net.Expense..Ratio..Year2018 != 0 &
+      !is.na(Annual.Report..Net.Expense..Ratio..Year2018) &
+      !is.na(Annual.Report..Net.Expense..Ratio..Year2019)
+  ) %>% 
+  mutate(
+    FeeChange = 
+      cut(Pct_Change_2018_2019,
+          breaks = c(-Inf,-50,-25,-10,-1,-0.01,0,Inf),
+          labels = c("< -50", "-25 - -50", "-10 - -25", "-1 - 10","0 - -1", "0", "> 0"),
+          include.lowest = TRUE,
+          right = TRUE
+      )
+  )
+
+Summary_Active_Category <- Active_Category %>% 
+  group_by(FeeChange) %>% 
+  summarise(count = n())
+
+write_csv(Summary_Active_Category, "Active_category.csv")
+
+datatable(Summary_Category)
 ```
