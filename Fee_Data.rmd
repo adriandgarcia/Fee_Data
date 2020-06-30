@@ -73,8 +73,9 @@ Next steps:
 * Divide the total adjusted assets by the total net asssets to calculate asset-weighted fees for each fund shop.
 
 Filter:
-*Firms with at least 50 share classes
-*Firms with at least $25 billion in assets
+
+* Firms with at least 50 share classes
+* Firms with at least $25 billion in assets
 
 I select the top and bottom 15 fund families based on the results.
 
@@ -147,8 +148,9 @@ Next steps:
 * Divide the total adjusted assets by the total net asssets to calculate asset-weighted fees for each fund shop.
 
 Filter:
-*Firms with at least 10 share classes
-*Firms with at least $1 in assets
+
+* Firms with at least 10 share classes
+* Firms with at least $1 in assets
 
 I select the top and bottom 15 fund families based on the results.
 
@@ -273,8 +275,9 @@ Next I created a category (FeeChange) that puts the percent changes (continous) 
 
 
 Filter:
-*Firms with at least 10 share classes
-*Firms with at least $1 in assets
+
+* Firms with at least 10 share classes
+* Firms with at least $1 in assets
 
 ```{r passive_shareclass, Message=FALSE}
 Passive_Shareclass <- Adjusted_Data %>%
@@ -347,8 +350,9 @@ Here I am looking at how many active share classes had fees that were cut and hi
 Next I create a category (FeeChange) that puts the percent changes (continous) in buckets (categorical). After that I just count the buckets.
 
 Filter:
-*Firms with at least 50 share classes
-*Firms with at least $25 billion in assets
+
+* Firms with at least 50 share classes
+* Firms with at least $25 billion in assets
 
 ```{r active_shareclass, Message = FALSE}
 
