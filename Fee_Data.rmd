@@ -195,7 +195,7 @@ ggplot(data = Passive_HighFees, mapping = aes(x = reorder(Firm.Name,-Fee_Wted), 
   coord_flip() +
   scale_y_continuous(limits = c(0, 5)) +
   geom_text(aes(label = round(Fee_Wted, 2)), hjust = -.5) +
-  ggtitle("Funds shops with the highest fees across active shareclasses") +
+  ggtitle("Funds shops with the highest fees across passive shareclasses") +
   ylab("2019 Asset Weighted Fee") +
   xlab("Fund Family") +
   theme_classic()
@@ -205,7 +205,7 @@ ggplot(data = Passive_LowFees, mapping = aes(x = reorder(Firm.Name,-Fee_Wted), y
   coord_flip() +
   scale_y_continuous(limits = c(0, 5)) +
   geom_text(aes(label = round(Fee_Wted, 2)), hjust = -.5) +
-  ggtitle("Funds shops with the lowest fees across active shareclasses") +
+  ggtitle("Funds shops with the lowest fees across passive shareclasses") +
   ylab("2019 Asset Weighted Fee") +
   xlab("Fund Family") +
   theme_classic()
