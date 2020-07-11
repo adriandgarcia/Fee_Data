@@ -13,7 +13,7 @@ output:
     toc_float: true
 ---
 
-#Intro
+# Intro
 
 ## Getting Started
 
@@ -24,11 +24,11 @@ library(lubridate) #For working with dates
 library(DT) #For visualizing tables
 ```
 
-First, I pulled in the data from Morningstar Direct. (I combined it using “Combine_Files.r”). There were 25,616 rows and 88 columns. Data was pulled from Morningstar Direct on June 25, 2020.
+First, I pulled in the data from Morningstar Direct. (I combined it using “Combine_Files.r”). There were 25,569 rows and 89 columns. Data was pulled from Morningstar Direct on July 10, 2020.
 
 ```{r load, message = FALSE}
 
-Full <- read_csv("MS_Fee_Report_062520_Full.csv",
+Full <- read_csv("MS_Fee_Report_071020_Full.csv",
                  guess_max = 25000)
 
 ```
@@ -36,18 +36,22 @@ Full <- read_csv("MS_Fee_Report_062520_Full.csv",
 I’m made the following adjustments to the data:
 
 * Replaced spaces in the column names with periods.
+* Removed fund of funds
 * Calculated the average assets for 2017, 2018 and 2019.
 * Multiplied the annual average asset figures by the expense ratio (to use later for asset-weighted calculations).
-* Calculated the percent change in net expense ratios from 2017 to 2018 and 2018 to 2019. 
+* Calculated the percent change in net expense ratios from 2017 to 2018 and 2018 to 2019.
+
+_21,111 rows, 97 columns_
 
 ```{r adjustment, Message=FALSE}
 
 Adjusted_Data <- Full %>%
   rename_all(make.names) %>%
+  filter(Fund.of..Funds != "Yes") %>% 
   mutate(
-    Net_Asst_2017_AVG = rowMeans(.[, 53:64], na.rm = TRUE),
-    Net_Asst_2018_AVG = rowMeans(.[, 65:76], na.rm = TRUE),
-    Net_Asst_2019_AVG = rowMeans(.[, 77:88], na.rm = TRUE),
+    Net_Asst_2017_AVG = rowMeans(.[, 54:65], na.rm = TRUE),
+    Net_Asst_2018_AVG = rowMeans(.[, 66:77], na.rm = TRUE),
+    Net_Asst_2019_AVG = rowMeans(.[, 78:89], na.rm = TRUE),
     Asst_By_Fee_2017 = Net_Asst_2017_AVG * Annual.Report..Net.Expense..Ratio..Year2017,
     Asst_By_Fee_2018 = Net_Asst_2018_AVG * Annual.Report..Net.Expense..Ratio..Year2018,
     Asst_By_Fee_2019 = Net_Asst_2019_AVG * Annual.Report..Net.Expense..Ratio..Year2019,
@@ -60,7 +64,7 @@ Adjusted_Data <- Full %>%
   )
 
 write_csv(Adjusted_Data,
-          "~/Data/Fee_Data/Fee_Data/results/MS_Fee_Report_062520_ag.csv")
+          "~/Data/Fee_Data/Fee_Data/results/MS_Fee_Report_071020_ag.csv")
 
 ```
 
@@ -77,7 +81,8 @@ Filter:
 * Sum their net assets 2019
 * Firms with at least 50 share classes
 * Firms with at least $25 billion in assets in 2019
-* --17,324 rows remain *ActiveFunds*
+
+_13,865 rows remain *ActiveFunds*_
 
 Next steps:
 
@@ -86,7 +91,8 @@ Next steps:
 * Sum their adjusted assets (individually) for 2017, 2018 and 2019
 * Sum their net assets (individually) for 2017, 2018 and 2019
 * Divide the total adjusted assets by the total net asssets to calculate asset-weighted fees for each fund shop (individually) for 2017, 2018 and 2019
---54 rows *Active_Fees*
+
+_53 rows *Active_Fees*_
 
 I select the top and bottom 15 fund families based on the results.
 
@@ -283,15 +289,22 @@ Active_Cat_Pct <- Active_Cat %>%
     Firm.Name,
     US.Category.Group,
     Cat_Count,
+    Sum_Assets_Cat_2019,
     Sum_Assets_2019,
     Fee_Wted_Cat_2019,
     Fee_Wted_2019,
     pct_assets_2019
   ) %>%
-  filter(Firm.Name %in% Lowcost_Active_Firms |
+  mutate(Type =
+           case_when(
+             grepl("Equity", US.Category.Group) ~ "Equity",
+             grepl("Bond", US.Category.Group) ~ "Bond",
+             TRUE ~ "Other")
+           ) %>% 
+           filter(Firm.Name %in% Lowcost_Active_Firms |
            Firm.Name %in% Highcost_Active_Firms) %>%
-  group_by(Firm.Name) %>%
-  arrange(-Fee_Wted_2019, .by_group = TRUE)
+           group_by(Firm.Name) %>%
+           arrange(-Fee_Wted_2019, .by_group = TRUE)
 
 write_csv(Active_Cat_Pct,
           "~/Data/Fee_Data/Fee_Data/results/cat_activefunds_highlow.csv")
@@ -305,6 +318,7 @@ Here's a look at some of the above data. Full results saved as *cat_activefunds_
 
 Active_Cat_Pct %>%
   filter(Firm.Name %in% Lowcost_Active_Firms) %>%
+  arrange(-pct_assets_2019, .by_group = TRUE) %>% 
   ungroup() %>% 
   mutate(Firm.Name = str_wrap(Firm.Name, width = 10)) %>% 
   ggplot(.,
@@ -325,6 +339,7 @@ Active_Cat_Pct %>%
 
 Active_Cat_Pct %>%
   filter(Firm.Name %in% Highcost_Active_Firms) %>%
+  arrange(-pct_assets_2019, .by_group = TRUE) %>% 
   ungroup() %>% 
   mutate(Firm.Name = str_wrap(Firm.Name, width = 10)) %>%
   ggplot(.,
@@ -513,7 +528,7 @@ ggplot(data = Passive_LowFees, mapping = aes(x = reorder(Firm.Name,-Fee_Wted_201
 ```
 
 
-# Summary
+## Summary
 
 Here I the average net expense ratio, on an asset weighted basis, for 2017, 2018 and 2019.
 
@@ -826,6 +841,8 @@ Passive_Summary_Shareclass %>%
 
 ```
 
+# General
+
 ## Fee changes among share classes (active & passive)
 
 Here I am looking at how many share classes had fees that were cut and hiked or saw no change.
@@ -889,7 +906,7 @@ Now I need to put the percent change in fees from 2018 to 2019 into buckets. I d
 ```{r category, Message=FALSE}
 Category <- Adjusted_Data %>%
   select(1:20,
-         86:96) %>%
+         90:97) %>%
   filter(
     Annual.Report..Net.Expense..Ratio..Year2018 != 0 &
       !is.na(Annual.Report..Net.Expense..Ratio..Year2018) &
