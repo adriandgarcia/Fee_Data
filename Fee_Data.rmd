@@ -17,11 +17,13 @@ output:
 
 ## Getting Started
 
-```{r setup, message = FALSE}
+```{r setup, message = FALSE, warning = FALSE}
+
 library(waffle) #Waffle graphs
 library(tidyverse) #For Data Analysis
 library(lubridate) #For working with dates
 library(DT) #For visualizing tables
+
 ```
 
 First, I pulled in the data from Morningstar Direct. (I combined it using “Combine_Files.r”). There were 25,569 rows and 89 columns. Data was pulled from Morningstar Direct on July 10, 2020.
@@ -41,7 +43,7 @@ I’m made the following adjustments to the data:
 * Multiplied the annual average asset figures by the expense ratio (to use later for asset-weighted calculations).
 * Calculated the percent change in net expense ratios from 2017 to 2018 and 2018 to 2019.
 
-_21,111 rows, 97 columns_
+_21,111 rows, 97 columns **Adjusted_Data**_
 
 ```{r adjustment, Message=FALSE}
 
@@ -72,17 +74,20 @@ write_csv(Adjusted_Data,
 
 ## Fund families with the lowest/highes fees across active products
 
-Here I am looking at the fund families with the lowest and highest overall fees across active products. I start by filtering out index funds and removing fees that are NA (blank) for 2019. 23,351 rows remain.
+Here I am looking at the fund families with the lowest and highest overall fees across active products. I start by filtering out index funds and removing fees that are NA (blank) for 2019. 19,199 rows remain.
 
-Filter:
+Additions:
 
 * Group the data by firm
 * Count how many shareclasses each firm has
 * Sum their net assets 2019
+
+Filter:
+
 * Firms with at least 50 share classes
 * Firms with at least $25 billion in assets in 2019
 
-_13,865 rows remain *ActiveFunds*_
+_13,865 rows remain **ActiveFunds**_
 
 Next steps:
 
@@ -92,11 +97,11 @@ Next steps:
 * Sum their net assets (individually) for 2017, 2018 and 2019
 * Divide the total adjusted assets by the total net asssets to calculate asset-weighted fees for each fund shop (individually) for 2017, 2018 and 2019
 
-_53 rows *Active_Fees*_
+_53 rows **Active_Fees**_
 
-I select the top and bottom 15 fund families based on the results.
 
 ```{r active_funds, Message=FALSE}
+
 ActiveFunds <- Adjusted_Data %>%
   filter(
     Net_Asst_2019_AVG != 0 &
@@ -129,7 +134,7 @@ Active_Fees <- ActiveFunds %>%
   )
 
 write_csv(Active_Fees,
-          "~/Data/Fee_Data/Fee_Data/results/fees_activefunds_firm.csv")
+          "~/Data/Fee_Data/Fee_Data/results/ACTIVE/fees_activefunds_firm.csv")
 
 Active_HighFees <- Active_Fees %>%
   arrange(desc(Fee_Wted_2019)) %>%
@@ -138,9 +143,10 @@ Active_HighFees <- Active_Fees %>%
 Active_LowFees <- Active_Fees %>%
   arrange(Fee_Wted_2019) %>%
   top_n(-15, Fee_Wted_2019)
+
 ```
 
-Here's a look at some of the above data. Full results saved as *fees_activefunds_firm.csv* in **Results** folder.
+Here's a look at some of the above data. Full results saved as **fees_activefunds_firm.csv** in **Results** folder.
 
 ```{r active_high_show, echo = FALSE}
 
@@ -170,7 +176,7 @@ ggplot(data = Active_LowFees, mapping = aes(x = reorder(Firm.Name,-Fee_Wted_2019
 
 Here I the average net expense ratio, on an asset weighted basis, for 2017, 2018 and 2019.
 
-I take *ActiveFunds*
+I take **ActiveFunds**
 
 Next steps:
 
@@ -211,7 +217,7 @@ Active_Summary <- ActiveFunds %>%
   )
 
 write_csv(Active_Summary,
-          "~/Data/Fee_Data/Fee_Data/results/fees_activefunds_summary.csv")
+          "~/Data/Fee_Data/Fee_Data/results/ACTIVE/fees_activefunds_summary.csv")
 
 datatable(Active_Summary)
 
@@ -219,7 +225,7 @@ datatable(Active_Summary)
 
 ## Fees by Type of Active Fund Category
 
-Here I am looking at fund families' fees for each U.S. category types for passive funds. I start by pulling in the filtered data from *ActiveFunds*.
+Here I am looking at fund families' fees for each U.S. category types for passive funds. I start by pulling in the filtered data from **ActiveFunds**.
 
 Next steps:
 
@@ -268,7 +274,7 @@ Active_Cat <- ActiveFunds %>%
     )
 
 write_csv(Active_Cat,
-          "~/Data/Fee_Data/Fee_Data/results/cat_activefunds_firm.csv")
+          "~/Data/Fee_Data/Fee_Data/results/ACTIVE/cat_activefunds_firm.csv")
 
 Active_Cat_Sum <- Active_Cat %>%
   group_by(US.Category.Group) %>%  
@@ -299,21 +305,22 @@ Active_Cat_Pct <- Active_Cat %>%
            case_when(
              grepl("Equity", US.Category.Group) ~ "Equity",
              grepl("Bond", US.Category.Group) ~ "Bond",
-             TRUE ~ "Other")
-           ) %>% 
-           filter(Firm.Name %in% Lowcost_Active_Firms |
+             TRUE ~ "Other"
+           )) %>%
+  filter(Firm.Name %in% Lowcost_Active_Firms |
            Firm.Name %in% Highcost_Active_Firms) %>%
-           group_by(Firm.Name) %>%
-           arrange(-Fee_Wted_2019, .by_group = TRUE)
+  group_by(Firm.Name) %>%
+  arrange(-Fee_Wted_2019, .by_group = TRUE)
 
 write_csv(Active_Cat_Pct,
-          "~/Data/Fee_Data/Fee_Data/results/cat_activefunds_highlow.csv")
+          "~/Data/Fee_Data/Fee_Data/results/ACTIVE/cat_activefunds_highlow.csv")
 
 ```
 
-Here's a look at some of the above data. Full results saved as *cat_activefunds_firm.csv* in **Results** folder.
+Here's a look at some of the above data. Full results saved as **cat_activefunds_firm.csv** in **Results** folder.
 
 ```{r show_active_cat_pct, echo = FALSE}
+
 #Building Waffle charts with https://rud.is/rpubs/building-waffle-charts.html
 
 Active_Cat_Pct %>%
@@ -357,6 +364,7 @@ Active_Cat_Pct %>%
   theme_enhance_waffle() +
   labs(title = "Type of Holdings in High Cost Active Funds",
        subtitle = "% of assets in each category type")
+
 ```
 
 ## Fee changes among active share classes
@@ -410,11 +418,11 @@ Active_Summary_Shareclass <- Active_Shareclass %>%
 
 write_csv(
   Active_Summary_Shareclass,
-  "~/Data/Fee_Data/Fee_Data/results/shareclass_changes_activefunds.csv"
+  "~/Data/Fee_Data/Fee_Data/results/ACTIVE/shareclass_changes_activefunds.csv"
   )
 ```
 
-Here's a look at some of the above data. Full results saved as *shareclass_changes_activefunds.csv* in **Results** folder.
+Here's a look at some of the above data. Full results saved as **shareclass_changes_activefunds.csv** in **Results** folder.
 
 ```{r active_shareclass_show, echo = FALSE}
 Active_Summary_Shareclass %>%
@@ -438,24 +446,28 @@ Active_Summary_Shareclass %>%
 
 ## Fund families with the lowest/highes fees across passive products
 
-Here I am looking at the fund families with the lowest and highest overall fees across passive products. I start by filtering out non-index funds and removing fees that are NA (blank) for 2019.
+Here I am looking at the fund families with the lowest and highest overall fees across passive products. I start by filtering out non-index funds and removing fees that are NA (blank) for 2019. 1,053 rows remain.
 
 Filter:
 
 * Firms with at least 10 share classes
 * Firms with at least $1 in assets
 
+_926 rows remain **PassiveFunds**_
+
 Next steps:
+
 * Group the data by firm
 * Sum their adjusted assets
 * Sum their net assets
 * Divide the total adjusted assets by the total net asssets to calculate asset-weighted fees for each fund shop.
 
-
+_25 rows remain **ActiveFees**_
 
 I select the top and bottom 15 fund families based on the results.
 
 ```{r passive_funds, Message = FALSE}
+
 PassiveFunds <- Adjusted_Data %>%
   filter(
     Net_Asst_2019_AVG != 0 &
@@ -484,11 +496,11 @@ Passive_Fees <- PassiveFunds %>%
     Fee_Wted_2018 = Sum_Assts_Wted_2018 / Sum_Assets_2018,
     Sum_Assts_Wted_2019 = sum(Asst_By_Fee_2019, na.rm = TRUE),
     Sum_Assets_2019 = sum(Net_Asst_2019_AVG, na.rm = TRUE),
-   Fee_Wted_2019 = Sum_Assts_Wted_2019 / Sum_Assets_2019
+    Fee_Wted_2019 = Sum_Assts_Wted_2019 / Sum_Assets_2019
   )
 
 write_csv(Passive_Fees,
-          "~/Data/Fee_Data/Fee_Data/results/fees_passivefunds_firm.csv")
+          "~/Data/Fee_Data/Fee_Data/results/PASSIVE/fees_passivefunds_firm.csv")
 
 
 Passive_HighFees <- Passive_Fees %>%
@@ -498,11 +510,13 @@ Passive_HighFees <- Passive_Fees %>%
 Passive_LowFees <- Passive_Fees %>%
   arrange(Fee_Wted_2019) %>%
   top_n(-15, Fee_Wted_2019)
+
 ```
 
-Here's a look at some of the above data. Full results saved as *fees_passivefunds_firm.csv* in **Results** folder.
+Here's a look at some of the above data. Full results saved as **fees_passivefunds_firm.csv** in **Results** folder.
 
 ```{r passive_high_show, echo = FALSE}
+
 ggplot(data = Passive_HighFees, mapping = aes(x = reorder(Firm.Name,-Fee_Wted_2019), y = Fee_Wted_2019)) +
   geom_bar(stat = "identity", fill = "black") +
   coord_flip() +
@@ -527,12 +541,11 @@ ggplot(data = Passive_LowFees, mapping = aes(x = reorder(Firm.Name,-Fee_Wted_201
   
 ```
 
-
 ## Summary
 
 Here I the average net expense ratio, on an asset weighted basis, for 2017, 2018 and 2019.
 
-I take *PassiveFunds*
+I take **PassiveFunds**
 
 Next steps:
 
@@ -546,6 +559,7 @@ Next steps:
 I drop the adjusted asset figures above and gather all the columns.
 
 ```{r passive_funds_summary, Message=FALSE}
+
 Passive_Summary <- PassiveFunds %>% 
   ungroup() %>%
   summarise(
@@ -558,7 +572,7 @@ Passive_Summary <- PassiveFunds %>%
     Fee_Wted_2018 = Sum_Assts_Wted_2018 / Sum_Assets_2018,
     Sum_Assts_Wted_2019 = sum(Asst_By_Fee_2019, na.rm = TRUE),
     Sum_Assets_2019 = sum(Net_Asst_2019_AVG, na.rm = TRUE),
-   Fee_Wted_2019 = Sum_Assts_Wted_2019 / Sum_Assets_2019
+    Fee_Wted_2019 = Sum_Assts_Wted_2019 / Sum_Assets_2019
   ) %>%
   select(
     1,
@@ -573,7 +587,7 @@ Passive_Summary <- PassiveFunds %>%
   )
 
 write_csv(Passive_Summary,
-          "~/Data/Fee_Data/Fee_Data/results/fees_activefunds_summary.csv")
+          "~/Data/Fee_Data/Fee_Data/results/PASSIVE/fees_activefunds_summary.csv")
 
 datatable(Passive_Summary)
 
@@ -581,14 +595,16 @@ datatable(Passive_Summary)
 
 ## Past years
 
-This does the same as *Fund families with the lowest/highes fees across passive products* except it includes 2018 figures as well.
+This does the same as **Fund families with the lowest/highes fees across passive products** except it includes 2018 figures as well.
 
 ```{r passive_funds_past, Message = FALSE}
+
+
 PassiveFunds_Past <- Adjusted_Data %>%
   filter(
     Net_Asst_2019_AVG != 0 &
       Index..Fund != "No" &
-      !is.na(Annual.Report..Net.Expense..Ratio..Year2019) 
+      !is.na(Annual.Report..Net.Expense..Ratio..Year2019)
   )
 
 Passive_Fees_Past <- PassiveFunds_Past %>%
@@ -601,13 +617,14 @@ Passive_Fees_Past <- PassiveFunds_Past %>%
     Sum_Assts_Wted_2019 = sum(Asst_By_Fee_2019, na.rm = TRUE),
     Sum_Assets_2019 = sum(Net_Asst_2019_AVG, na.rm = TRUE),
     Fee_Wted_2019 = Sum_Assts_Wted_2019 / Sum_Assets_2019
-  ) %>% 
+  ) %>%
   filter(Count >= 10 &
-           Sum_Assets_2019 > 0
-         )
+           Sum_Assets_2019 > 0)
 
-write_csv(Passive_Fees_Past,
-          "~/Data/Fee_Data/Fee_Data/results/past_fees_passivefunds_firm.csv")
+write_csv(
+  Passive_Fees_Past,
+  "~/Data/Fee_Data/Fee_Data/results/PASSIVE/past_fees_passivefunds_firm.csv"
+)
 
 
 Passive_HighFees_Past <- Passive_Fees_Past %>%
@@ -618,17 +635,16 @@ Passive_LowFees_Past <- Passive_Fees_Past %>%
   arrange(Fee_Wted_2019) %>%
   top_n(-15)
 
-Passive_LowFees_Past %>% 
+Passive_LowFees_Past %>%
   select(1:4,
          6:7,
-         5,8) %>%
-  write_csv(
-          "~/Data/Fee_Data/Fee_Data/results/past_lowfees_passivefunds_firm.csv")
+         5, 8) %>%
+  write_csv("~/Data/Fee_Data/Fee_Data/results/PASSIVE/past_lowfees_passivefunds_firm.csv")
 ```
 
 ## Fees by Type of Passive Fund Holdings
 
-Here I am looking at fund families' fees for each U.S. category types for passive funds. I start by pulling in the filtered data from *PassiveFunds*.
+Here I am looking at fund families' fees for each U.S. category types for passive funds. I start by pulling in the filtered data from **PassiveFunds**.
 
 Next steps:
 * Group the data by firm and U.S. category group
@@ -779,6 +795,7 @@ Filter:
 * Firms with at least $1 in assets
 
 ```{r passive_shareclass, Message=FALSE}
+
 Passive_Shareclass <- Adjusted_Data %>%
   filter(
     Annual.Report..Net.Expense..Ratio..Year2018 != 0 &
@@ -817,13 +834,15 @@ Passive_Summary_Shareclass <- Passive_Shareclass %>%
 
 write_csv(
   Passive_Summary_Shareclass,
-  "~/Data/Fee_Data/Fee_Data/results/shareclass_changes_passivefunds.csv"
+  "~/Data/Fee_Data/Fee_Data/results/PASSIVE/shareclass_changes_passivefunds.csv"
   )
+
 ```
 
-Here's a look at some of the above data. Full results saved as *shareclass_changes_passivefunds.csv* in **Results** folder.
+Here's a look at some of the above data. Full results saved as **shareclass_changes_passivefunds.csv** in **Results** folder.
 
 ```{r passive_shareclass_show, echo = FALSE}
+
 Passive_Summary_Shareclass %>%
   filter(FeeChange == "Cut") %>%
   arrange(desc(count)) %>%
@@ -852,6 +871,7 @@ I start by filtering out fees that are NA (blank) for 2019 and 2018. I also remo
 Next I create a category (FeeChange) that puts the percent changes (continous) in buckets (categorical). After that I just count the buckets.
 
 ```{r shareclass, Message=FALSE}
+
 Shareclass <- Adjusted_Data %>%
   filter(
     Annual.Report..Net.Expense..Ratio..Year2018 != 0 &
@@ -885,9 +905,10 @@ Summary_Shareclass <- Shareclass %>%
 
 ```
 
-Here's a look at some of the above data. Full results saved as *shareclass_fee_changes.csv* in **Results** folder.
+Here's a look at some of the above data. Full results saved as **shareclass_fee_changes.csv** in **Results** folder.
 
 ```{r shareclass_show, echo = FALSE}
+
 ggplot(data = Summary_Shareclass, mapping = aes(x = FeeChange, y = count)) +
   geom_bar(stat = "identity", fill = "black") +
   ggtitle("Fee changes among share classes (active & passive)") +
@@ -933,7 +954,7 @@ Summary_Category <- Category %>%
 datatable(Summary_Category)
 ```
 
-Here's a look at the above data. Full results saved as *shareclass_cuts_total.csv* in **Results** folder.
+Here's a look at the above data. Full results saved as **shareclass_cuts_total.csv** in **Results** folder.
 
 ```{r category_show, echo = FALSE}
 ggplot(data = Summary_Category, mapping = aes(x = FeeChange, y = count)) +
