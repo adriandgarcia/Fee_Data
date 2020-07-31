@@ -26,11 +26,18 @@ library(DT) #For visualizing tables
 
 ```
 
-First, I pulled in the data from Morningstar Direct. (I combined it using “Combine_Files.r”). There were 25,569 rows and 89 columns. Data was pulled from Morningstar Direct on July 10, 2020.
+First, I pulled in the data from Morningstar Direct. (I combined it using “Combine_Files.r”). There were 25,401 rows and 89 columns. Data was pulled from Morningstar Direct on July 30, 2020.
+
+We repulled the data to replace the "Annual Report Adjusted Expense Ratio"  the "Annual Report Net Expense Ratio" figure previously used. [Here's why](https://www.morningstar.com/articles/969612/one-expense-ratio-to-rule-them-all).
+
+For the 2019 fee study from Morningstar the analyst says they used the lesser of Annual Report Net Expense Ratio and Annual Report Adjusted for each fund. ... adjusted excludes short interest, reverse repo rates, among other things that make it hard to compare fixed income and alt funds across firms. However, we didn’t JUST use adjusted because it’s not exhaustive of the whole universe we found – a handful of funds had missing adjusted expense ratios, but every one had a net expense ratio."
 
 ```{r load, message = FALSE}
 
-Full <- read_csv("MS_Fee_Report_071020_Full.csv",
+# Full <- read_csv("MS_Fee_Report_071020_Full.csv",
+#                  guess_max = 25000)
+
+Full <- read_csv("MS_Fee_Report_072920_Fulla.csv",
                  guess_max = 25000)
 
 ```
@@ -39,6 +46,8 @@ I’m made the following adjustments to the data:
 
 * Replaced spaces in the column names with periods.
 * Removed fund of funds
+* Renamed "Annual Report Adjusted Expense Ratio"  to "Annual Report Net Expense Ratio" (this is just to not rewrite code)
+* Combined the following firms Eaton Vance & Calvert Research and Management, SPDR State Street Global Advisors & "State Street Global Advisors, Nuveen and TIAA Investments
 * Calculated the average assets for 2017, 2018 and 2019.
 * Multiplied the annual average asset figures by the expense ratio (to use later for asset-weighted calculations).
 * Calculated the percent change in net expense ratios from 2017 to 2018 and 2018 to 2019.
@@ -49,7 +58,20 @@ _21,111 rows, 97 columns **Adjusted_Data**_
 
 Adjusted_Data <- Full %>%
   rename_all(make.names) %>%
-  filter(Fund.of..Funds != "Yes") %>% 
+  filter(Fund.of..Funds != "Yes") %>%
+  rename(
+    Annual.Report..Net.Expense..Ratio..Year2017 = Annual.Report.Adjusted.Expense.Ratio..Year2017,
+    Annual.Report..Net.Expense..Ratio..Year2018 = Annual.Report.Adjusted.Expense.Ratio..Year2018,
+    Annual.Report..Net.Expense..Ratio..Year2019 = Annual.Report.Adjusted.Expense.Ratio..Year2019
+    ) %>%
+  mutate(
+    Firm.Name = case_when(
+      Firm.Name == "SPDR State Street Global Advisors" ~ "State Street Global Advisors",
+      Firm.Name == "Calvert Research and Management" ~ "Eaton Vance",
+      Firm.Name == "Nuveen" ~ "TIAA Investments",
+      TRUE ~ as.character(Firm.Name)
+    )
+  ) %>%
   mutate(
     Net_Asst_2017_AVG = rowMeans(.[, 54:65], na.rm = TRUE),
     Net_Asst_2018_AVG = rowMeans(.[, 66:77], na.rm = TRUE),
@@ -325,7 +347,19 @@ Here's a look at some of the above data. Full results saved as **cat_activefunds
 
 Active_Cat_Pct %>%
   filter(Firm.Name %in% Lowcost_Active_Firms) %>%
-  arrange(-pct_assets_2019, .by_group = TRUE) %>% 
+  mutate(
+     Category_Code = case_when(
+      US.Category.Group == "U.S. Equity" ~ 1,
+      US.Category.Group == "International Equity" ~ 2,
+      US.Category.Group == "Sector Equity" ~ 3,
+      US.Category.Group == "Taxable Bond" ~ 4,
+      US.Category.Group == "Municipal Bond" ~ 5,
+      US.Category.Group == "Allocation" ~ 6,
+      US.Category.Group == "Alternative" ~ 7,
+      US.Category.Group == "Commodities" ~ 8,
+      TRUE ~ 999999)
+  ) %>% 
+  arrange(-Category_Code, .by_group = TRUE) %>% 
   ungroup() %>% 
   mutate(Firm.Name = str_wrap(Firm.Name, width = 10)) %>% 
   ggplot(.,
@@ -346,7 +380,19 @@ Active_Cat_Pct %>%
 
 Active_Cat_Pct %>%
   filter(Firm.Name %in% Highcost_Active_Firms) %>%
-  arrange(-pct_assets_2019, .by_group = TRUE) %>% 
+  mutate(
+     Category_Code = case_when(
+      US.Category.Group == "U.S. Equity" ~ 1,
+      US.Category.Group == "International Equity" ~ 2,
+      US.Category.Group == "Sector Equity" ~ 3,
+      US.Category.Group == "Taxable Bond" ~ 4,
+      US.Category.Group == "Municipal Bond" ~ 5,
+      US.Category.Group == "Allocation" ~ 6,
+      US.Category.Group == "Alternative" ~ 7,
+      US.Category.Group == "Commodities" ~ 8,
+      TRUE ~ 999999)
+  ) %>% 
+  arrange(-Category_Code, .by_group = TRUE) %>% 
   ungroup() %>% 
   mutate(Firm.Name = str_wrap(Firm.Name, width = 10)) %>%
   ggplot(.,
@@ -701,7 +747,7 @@ Passive_Cat_Sum <- Passive_Cat %>%
     )
 
 Passive_Cat_Pct <- Passive_Cat %>%
-  select(Firm.Name, US.Category.Group, pct_assets) %>% 
+  select(Firm.Name, US.Category.Group,  Fee_Wted_Cat, pct_assets) %>% 
   #spread(US.Category.Group, pct_assets) %>% 
   filter(
     Firm.Name %in% c("Fidelity Investments",
@@ -717,6 +763,9 @@ Passive_Cat_Pct <- Passive_Cat %>%
     ) %>% 
   group_by(Firm.Name) %>% 
   arrange(-pct_assets, .by_group = TRUE)
+
+  write_csv(Passive_Cat_Pct, "~/Data/Fee_Data/Fee_Data/results/PASSIVE/passivefunds_firm_category.csv")
+
 
 ```
 

@@ -25,4 +25,22 @@ Full_DATA <- full_join(Data1, Data2) %>%
 
 write_csv(Full_DATA, "MS_Fee_Report_071020_Full.csv")
 
+rm(list=c("Data1","Data2","Data3","Data4","Data5","Data6","Full_DATA"))
+
+Data1 <- READ("~/Data/Fee_Data/Fee_Data/DATA/MS_Fee_Report_072920_5000a.csv")
+Data2 <- READ("~/Data/Fee_Data/Fee_Data/DATA/MS_Fee_Report_072920_10000a.csv")
+Data3 <- READ("~/Data/Fee_Data/Fee_Data/DATA/MS_Fee_Report_072920_15000a.csv")
+Data4 <- READ("~/Data/Fee_Data/Fee_Data/DATA/MS_Fee_Report_072920_20000a.csv")
+Data5 <- READ("~/Data/Fee_Data/Fee_Data/DATA/MS_Fee_Report_072920_25000a.csv")
+Data6 <- READ("~/Data/Fee_Data/Fee_Data/DATA/MS_Fee_Report_072920_25401a.csv")
+
+Full_DATA <- full_join(Data1, Data2) %>%
+  full_join(., Data3) %>% 
+  full_join(., Data4) %>% 
+  full_join(., Data5) %>% 
+  full_join(., Data6)
+
+
+write_csv(Full_DATA, "MS_Fee_Report_072920_Fulla.csv")
+
 rm(list=c("Data1","Data2","Data3","Data4","Data5","Data6","READ","Full_DATA"))
