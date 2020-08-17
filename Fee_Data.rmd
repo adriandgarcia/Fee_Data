@@ -30,7 +30,7 @@ First, I pulled in the data from Morningstar Direct. (I combined it using “Com
 
 We repulled the data to replace the "Annual Report Adjusted Expense Ratio"  the "Annual Report Net Expense Ratio" figure previously used. [Here's why](https://www.morningstar.com/articles/969612/one-expense-ratio-to-rule-them-all).
 
-For the 2019 fee study from Morningstar the analyst says they used the lesser of Annual Report Net Expense Ratio and Annual Report Adjusted for each fund. ... adjusted excludes short interest, reverse repo rates, among other things that make it hard to compare fixed income and alt funds across firms. However, we didn’t JUST use adjusted because it’s not exhaustive of the whole universe we found – a handful of funds had missing adjusted expense ratios, but every one had a net expense ratio."
+For the 2019 fee study from Morningstar the analyst says they used the lesser of Annual Report Net Expense Ratio and Annual Report Adjusted for each fund. "... adjusted excludes short interest, reverse repo rates, among other things that make it hard to compare fixed income and alt funds across firms. However, we didn’t JUST use adjusted because it’s not exhaustive of the whole universe we found – a handful of funds had missing adjusted expense ratios, but every one had a net expense ratio."
 
 ```{r load, message = FALSE}
 
@@ -42,11 +42,11 @@ Full <- read_csv("MS_Fee_Report_072920_Fulla.csv",
 
 ```
 
-I’m made the following adjustments to the data:
+I made the following adjustments to the data:
 
 * Replaced spaces in the column names with periods.
 * Removed fund of funds
-* Renamed "Annual Report Adjusted Expense Ratio"  to "Annual Report Net Expense Ratio" (this is just to not rewrite code)
+* Renamed "Annual Report Adjusted Expense Ratio" to "Annual Report Net Expense Ratio" (this is just to not rewrite code)
 * Combined the following firms Eaton Vance & Calvert Research and Management, SPDR State Street Global Advisors & "State Street Global Advisors, Nuveen and TIAA Investments
 * Calculated the average assets for 2017, 2018 and 2019.
 * Multiplied the annual average asset figures by the expense ratio (to use later for asset-weighted calculations).
@@ -160,11 +160,11 @@ write_csv(Active_Fees,
 
 Active_HighFees <- Active_Fees %>%
   arrange(desc(Fee_Wted_2019)) %>%
-  top_n(15, Fee_Wted_2019)
+  top_n(10, Fee_Wted_2019)
 
 Active_LowFees <- Active_Fees %>%
   arrange(Fee_Wted_2019) %>%
-  top_n(-15, Fee_Wted_2019)
+  top_n(-10, Fee_Wted_2019)
 
 ```
 
@@ -247,7 +247,7 @@ datatable(Active_Summary)
 
 ## Fees by Type of Active Fund Category
 
-Here I am looking at fund families' fees for each U.S. category types for passive funds. I start by pulling in the filtered data from **ActiveFunds**.
+Here I am looking at fund families' fees for each U.S. category types for active funds. I start by pulling in the filtered data from **ActiveFunds**.
 
 Next steps:
 
@@ -410,6 +410,104 @@ Active_Cat_Pct %>%
   theme_enhance_waffle() +
   labs(title = "Type of Holdings in High Cost Active Funds",
        subtitle = "% of assets in each category type")
+
+```
+
+## Fees by Type of Morningstar Fund Category (ACTIVE)
+
+Here I am looking at fund families' fees for each Morningsar category types for active funds. I start by pulling in the filtered data from **ActiveFunds**.
+
+Next steps:
+
+* Group the data by firm and Morningstar category group
+* Sum their adjusted assets (individually) for 2017, 2018 and 2019
+* Sum their net assets (individually) for 2017, 2018 and 2019
+* Divide the total adjusted assets by the total net asssets to calculate asset-weighted fees for each fund shop and category group  (individually) for 2018 and 2019
+* Count how many shareclasses there are for each category
+
+Next:
+
+* Group by firm name
+* Sum total share classes for each fund family
+* Sum total adjusted assets
+* Sum total net assets
+* Calculate average fee for each fund family
+* Calculate percent of assets each fund family has in each category group
+
+```{r morninstar_active, message = FALSE}
+
+Active_MSCat <- ActiveFunds %>% 
+  group_by(Firm.Name, Morningstar.Category) %>% 
+  summarise(
+    Asst_Wted_Cat_2017 = sum(Asst_By_Fee_2017, na.rm = TRUE),
+    Sum_Assets_Cat_2017 = sum(Net_Asst_2017_AVG, na.rm = TRUE),
+    Fee_Wted_Cat_2017 = Asst_Wted_Cat_2017 / Sum_Assets_Cat_2017,
+    Asst_Wted_Cat_2018 = sum(Asst_By_Fee_2018, na.rm = TRUE),
+    Sum_Assets_Cat_2018 = sum(Net_Asst_2018_AVG, na.rm = TRUE),
+    Fee_Wted_Cat_2018 = Asst_Wted_Cat_2018 / Sum_Assets_Cat_2018,
+    Asst_Wted_Cat_2019 = sum(Asst_By_Fee_2019, na.rm = TRUE),
+    Sum_Assets_Cat_2019 = sum(Net_Asst_2019_AVG, na.rm = TRUE),
+    Fee_Wted_Cat_2019 = Asst_Wted_Cat_2019 / Sum_Assets_Cat_2019,
+    Cat_Count = n()
+  ) %>% 
+  group_by(Firm.Name) %>% 
+  mutate(
+    ShareClass_Count = sum(Cat_Count, na.rm = TRUE),
+    Sum_Assts_Wted_2018 = sum(Asst_Wted_Cat_2018, na.rm = TRUE),
+    Sum_Assets_2018 = sum(Sum_Assets_Cat_2018, na.rm = TRUE),
+    Fee_Wted_2018 = Sum_Assts_Wted_2018 / Sum_Assets_2018,
+    pct_assets_2018 = (Sum_Assets_Cat_2018 / Sum_Assets_2018) * 100,
+    Sum_Assts_Wted_2019 = sum(Asst_Wted_Cat_2019, na.rm = TRUE),
+    Sum_Assets_2019 = sum(Sum_Assets_Cat_2019, na.rm = TRUE),
+    Fee_Wted_2019 = Sum_Assts_Wted_2019 / Sum_Assets_2019,
+    pct_assets_2019 = (Sum_Assets_Cat_2019 / Sum_Assets_2019) * 100
+  )
+
+write_csv(Active_MSCat,
+          "~/Data/Fee_Data/Fee_Data/results/ACTIVE/MScat_activefunds.csv")
+
+
+Active_MSCat_Sum <- Active_MSCat %>%
+  group_by(Morningstar.Category) %>%  
+  summarise(
+    SHARECLASSES = sum(Cat_Count),
+    FEE = round((sum(Asst_Wted_Cat_2019)/sum(Sum_Assets_Cat_2019)),2),
+    ASSETS = sum(Sum_Assets_Cat_2019)
+  ) %>%  
+  mutate(
+    pct = round(ASSETS / sum(ASSETS)*100,2),
+    RANK = rank(-FEE)
+  )
+
+Lowcost_Active_Firms <- Active_LowFees$Firm.Name
+Highcost_Active_Firms <- Active_HighFees$Firm.Name
+
+Active_MSCat_Pct <- Active_MSCat %>%
+  select(
+    Firm.Name,
+    Morningstar.Category,
+    Cat_Count,
+    Sum_Assets_Cat_2019,
+    Sum_Assets_2019,
+    Fee_Wted_Cat_2019,
+    Fee_Wted_2019,
+    pct_assets_2019
+  ) %>%
+  filter(Firm.Name %in% Lowcost_Active_Firms |
+           Firm.Name %in% Highcost_Active_Firms) %>%
+  group_by(Firm.Name) %>%
+  arrange(-Fee_Wted_2019, .by_group = TRUE)
+
+write_csv(Active_MSCat_Pct,
+          "~/Data/Fee_Data/Fee_Data/results/ACTIVE/MScat_activefunds_highlow.csv")
+
+```
+
+Here's a look at some of the above data. Full results saved as **MScat_activefunds.csv** in **Results** folder.
+
+```{r morningstar_active_show, echo = FALSE}
+
+datatable(Active_MSCat_Sum)
 
 ```
 
